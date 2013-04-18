@@ -38,7 +38,9 @@ public class MenuItem extends Button {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				MenuItem.this.command.menuItemClicked(MenuItem.this);
+				if (MenuItem.this.command != null) {
+					MenuItem.this.command.menuItemClicked(MenuItem.this);
+				}
 			}
 		});
 	}

@@ -3,6 +3,7 @@ package com.example.test;
 import com.merap.promoren.component.officemenu.MenuSection;
 import com.merap.promoren.component.officemenu.MenuTab;
 import com.merap.promoren.component.officemenu.OfficeMenu;
+import com.merap.promoren.component.officemenu.ToggleMenuItem;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
@@ -28,7 +29,8 @@ public class TestUI extends UI {
 		MenuTab tab = menu.addTab("File");
 
 		MenuSection section = tab.addSection("create");
-		section.addItem("Create", new ThemeResource("images/add.png"));
+		section.addItem(new ToggleMenuItem("Create", new ThemeResource(
+				"images/add.png"), null));
 		section.addItem("Create longer", new ThemeResource("images/add.png"));
 		section.addItem("Create a really long thing", new ThemeResource(
 				"images/add.png"));

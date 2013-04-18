@@ -22,7 +22,21 @@
 		text-align: center;
 		width: 100%;
 		
-	overflow: hidden;
+		overflow: hidden;
+	}
+	
+	.officemenu .menuitem .v-button-wrap {
+		padding-bottom: 5px;
+		border-radius: 5px;
+		margin: 3px;
+	}
+	
+	.officemenu .menuitem .v-button-wrap:hover {
+		background-color: rgba(0,0,0,0.2);
+	}
+	
+	.officemenu .menuitem.down .v-button-wrap {
+		background-color: rgba(255,0,0,0.2);
 	}
 	
 	.officemenu .v-slot-menusection > div {
@@ -40,12 +54,4 @@
 		border-right: 1px solid #AAA;
 	}
 	
-	.officemenu .menuitem .v-button-wrap {
-		padding-bottom: 5px;
-		border-radius: 5px;
-		margin: 3px;
-	}
-	.officemenu .menuitem .v-button-wrap:hover {
-		background-color: rgba(0,0,0,0.2);
-	}
 }
