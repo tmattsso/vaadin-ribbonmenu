@@ -16,9 +16,9 @@ public class MenuItem extends Button {
 
 	private static final long serialVersionUID = 1093584532903074019L;
 
-	private Command command;
+	private MenuCommand command;
 
-	MenuItem(String caption, Resource icon, Command command) {
+	public MenuItem(String caption, Resource icon, MenuCommand command) {
 		super();
 
 		this.command = command;
@@ -34,18 +34,20 @@ public class MenuItem extends Button {
 
 		addClickListener(new ClickListener() {
 
+			private static final long serialVersionUID = -615975673819020510L;
+
 			@Override
 			public void buttonClick(ClickEvent event) {
-				// TODO fire event
+				MenuItem.this.command.menuItemClicked(MenuItem.this);
 			}
 		});
 	}
 
-	public Command getCommand() {
+	public MenuCommand getCommand() {
 		return command;
 	}
 
-	public void setCommand(Command command) {
+	public void setCommand(MenuCommand command) {
 		this.command = command;
 	}
 
