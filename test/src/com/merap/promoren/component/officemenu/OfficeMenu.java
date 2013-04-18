@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.themes.BaseTheme;
 
 public class OfficeMenu extends CssLayout {
@@ -18,11 +21,17 @@ public class OfficeMenu extends CssLayout {
 	static final String HEIGHT_SECTIONS = "100px";
 	static final String HEIGHT_OPEN = "120px";
 
-	private final CssLayout captions = new CssLayout();
+	private final Resource ARROW_UP = new ThemeResource("images/arrow-up.png");
+	private final Resource ARROW_DOWN = new ThemeResource(
+			"images/arrow-down.png");
+
+	private final HorizontalLayout captions = new HorizontalLayout();
 	private MenuTab currentTab = new MenuTab();
 
 	private final Map<String, MenuTab> tabs = new HashMap<String, MenuTab>();
 	private final Map<String, Button> tabCaptions = new HashMap<String, Button>();
+
+	private boolean open = false;
 
 	public OfficeMenu() {
 		super();
@@ -39,16 +48,27 @@ public class OfficeMenu extends CssLayout {
 
 		addComponent(captions);
 		addComponent(currentTab);
+
+		closeButton = new Button();
+		closeButton.addStyleName("headerclose");
+		closeButton.addClickListener(closeButtonListener);
+		captions.addComponent(closeButton);
+		captions.setExpandRatio(closeButton, 1);
+		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
 	protected void open() {
 		setHeight(HEIGHT_OPEN);
 		currentTab.setHeight(HEIGHT_SECTIONS);
+		open = true;
+		closeButton.setIcon(ARROW_UP);
 	}
 
 	protected void close() {
 		setHeight(HEIGHT_CLOSED);
 		currentTab.setHeight("0px");
+		open = false;
+		closeButton.setIcon(ARROW_DOWN);
 	}
 
 	public MenuSection addSection(String tabCaption, String desc) {
@@ -71,7 +91,8 @@ public class OfficeMenu extends CssLayout {
 		caption.addStyleName(BaseTheme.BUTTON_LINK);
 		caption.addStyleName("tabcaption");
 		tabCaptions.put(tabCaption, caption);
-		captions.addComponent(caption);
+
+		captions.addComponent(caption, captions.getComponentCount() - 1);
 
 		caption.addClickListener(tabChangeListener);
 
@@ -104,4 +125,20 @@ public class OfficeMenu extends CssLayout {
 			open();
 		}
 	};
+	private final ClickListener closeButtonListener = new ClickListener() {
+
+		private static final long serialVersionUID = -933901482894951128L;
+
+		@Override
+		public void buttonClick(ClickEvent event) {
+
+			if (open) {
+				close();
+			} else {
+				open();
+			}
+		}
+	};
+
+	private final Button closeButton;
 }
