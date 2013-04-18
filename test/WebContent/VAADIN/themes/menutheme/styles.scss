@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+@import "menutheme.scss";
+
+/* Removed hyphen (-) as workaround for http://dev.vaadin.com/ticket/10708 */
+.menutheme {
+	@include menutheme;
+}

@@ -47,7 +47,6 @@ public class OfficeMenu extends CssLayout {
 		captions.setWidth("100%");
 		currentTab.setHeight(HEIGHT_SECTIONS);
 		currentTab.setWidth("100%");
-		currentTab.addStyleName(Reindeer.PANEL_LIGHT);
 
 		addComponent(captions);
 		addComponent(currentTab);
@@ -91,7 +90,6 @@ public class OfficeMenu extends CssLayout {
 		tabs.put(tabCaption, tab);
 
 		Button caption = new Button(tabCaption);
-		caption.addStyleName(BaseTheme.BUTTON_LINK);
 		caption.addStyleName("tabcaption");
 		tabCaptions.put(tabCaption, caption);
 
