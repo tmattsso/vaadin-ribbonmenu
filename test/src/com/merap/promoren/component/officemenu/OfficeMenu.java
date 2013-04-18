@@ -11,7 +11,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.themes.BaseTheme;
+import com.vaadin.ui.themes.Reindeer;
 
 public class OfficeMenu extends CssLayout {
 
@@ -26,7 +28,7 @@ public class OfficeMenu extends CssLayout {
 			"images/arrow-down.png");
 
 	private final HorizontalLayout captions = new HorizontalLayout();
-	private MenuTab currentTab = new MenuTab();
+	private final Panel currentTab = new Panel();
 
 	private final Map<String, MenuTab> tabs = new HashMap<String, MenuTab>();
 	private final Map<String, Button> tabCaptions = new HashMap<String, Button>();
@@ -45,6 +47,7 @@ public class OfficeMenu extends CssLayout {
 		captions.setWidth("100%");
 		currentTab.setHeight(HEIGHT_SECTIONS);
 		currentTab.setWidth("100%");
+		currentTab.addStyleName(Reindeer.PANEL_LIGHT);
 
 		addComponent(captions);
 		addComponent(currentTab);
@@ -119,8 +122,7 @@ public class OfficeMenu extends CssLayout {
 		public void buttonClick(ClickEvent event) {
 			String tabCaption = event.getButton().getCaption();
 
-			replaceComponent(currentTab, tabs.get(tabCaption));
-			currentTab = tabs.get(tabCaption);
+			currentTab.setContent(tabs.get(tabCaption));
 
 			open();
 		}
