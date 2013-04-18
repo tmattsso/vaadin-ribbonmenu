@@ -28,21 +28,21 @@ public class TestUI extends UI {
 		MenuTab tab = menu.addTab("HELLOOOO1");
 
 		MenuSection section = tab.addSection("trooloololololo");
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
 		section = tab.addSection("trooloololololo");
 
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
 
 		tab = menu.addTab("HELLOOOO2");
 
 		section = tab.addSection("trooloololololo");
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
-		section.addItem("LOOL", new ThemeResource("../images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section.addItem("LOOL", new ThemeResource("images/add.png"));
 
 		layout.addComponent(menu);
 	}
