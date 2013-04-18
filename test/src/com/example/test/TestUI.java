@@ -25,24 +25,25 @@ public class TestUI extends UI {
 
 		OfficeMenu menu = new OfficeMenu();
 
-		MenuTab tab = menu.addTab("HELLOOOO1");
+		MenuTab tab = menu.addTab("File");
 
-		MenuSection section = tab.addSection("trooloololololo");
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section = tab.addSection("trooloololololo");
+		MenuSection section = tab.addSection("create");
+		section.addItem("Create", new ThemeResource("images/add.png"));
+		section.addItem("Create longer", new ThemeResource("images/add.png"));
+		section.addItem("Create a really long thing", new ThemeResource(
+				"images/add.png"));
 
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section = tab.addSection("save");
+		section.addItem("Save", new ThemeResource("images/add.png"));
+		section.addItem("Save As", new ThemeResource("images/add.png"));
+		section.addItem("Save Copy As", new ThemeResource("images/add.png"));
 
-		tab = menu.addTab("HELLOOOO2");
+		tab = menu.addTab("Edit");
 
-		section = tab.addSection("trooloololololo");
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
-		section.addItem("LOOL", new ThemeResource("images/add.png"));
+		section = tab.addSection("clipboard");
+		section.addItem("Cut", new ThemeResource("images/add.png"));
+		section.addItem("Copy", new ThemeResource("images/add.png"));
+		section.addItem("Paste", new ThemeResource("images/add.png"));
 
 		layout.addComponent(menu);
 	}
