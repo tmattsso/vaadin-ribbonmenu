@@ -1,6 +1,8 @@
 package com.merap.promoren.component.officemenu;
 
 import com.vaadin.server.Resource;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 
 /**
@@ -24,7 +26,7 @@ public class ToggleMenuItem extends MenuItem {
 
 		addStyleName(STYLE_UNPRESSED);
 
-		addClickListener(new ClickListener() {
+		realComponent.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = -7075018310285745343L;
 
