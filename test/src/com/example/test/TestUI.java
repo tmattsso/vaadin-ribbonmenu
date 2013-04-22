@@ -1,5 +1,7 @@
 package com.example.test;
 
+import com.merap.promoren.component.officemenu.MenuCommand;
+import com.merap.promoren.component.officemenu.MenuItem;
 import com.merap.promoren.component.officemenu.MenuSection;
 import com.merap.promoren.component.officemenu.MenuTab;
 import com.merap.promoren.component.officemenu.OfficeMenu;
@@ -7,6 +9,7 @@ import com.merap.promoren.component.officemenu.ToggleMenuItem;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
