@@ -5,6 +5,7 @@ import com.merap.promoren.component.officemenu.MenuItem;
 import com.merap.promoren.component.officemenu.MenuSection;
 import com.merap.promoren.component.officemenu.MenuTab;
 import com.merap.promoren.component.officemenu.OfficeMenu;
+import com.merap.promoren.component.officemenu.SubMenuItem;
 import com.merap.promoren.component.officemenu.ToggleMenuItem;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
@@ -29,10 +30,19 @@ public class TestUI extends UI {
 
 		OfficeMenu menu = new OfficeMenu();
 
-		MenuTab tab = menu.addTab("File");
+		menu.addEmptySection("File", new ThemeResource("images/add.png"),
+				new MenuCommand() {
+
+					@Override
+					public void menuItemClicked(SubMenuItem item) {
+						Notification.show("File menu clicked!");
+					}
+				});
+
+		MenuTab tab = menu.addTab("Create");
 
 		MenuSection section = tab.addSection("create");
-		section.addItem(new ToggleMenuItem("Create", new ThemeResource(
+		section.addItem(new ToggleMenuItem("Toggle me", new ThemeResource(
 				"images/add.png"), null));
 		section.addItem("Create longer", new ThemeResource("images/add.png"));
 		section.addItem("Create a really long thing", new ThemeResource(
@@ -48,7 +58,18 @@ public class TestUI extends UI {
 		section = tab.addSection("clipboard");
 		section.addItem("Cut", new ThemeResource("images/add.png"));
 		section.addItem("Copy", new ThemeResource("images/add.png"));
-		section.addItem("Paste", new ThemeResource("images/add.png"));
+
+		MenuItem item = section.addItem("Paste", new ThemeResource(
+				"images/add.png"));
+
+		item.addSubItem("lool", new ThemeResource("images/add.png"),
+				new MenuCommand() {
+
+					@Override
+					public void menuItemClicked(SubMenuItem item) {
+						Notification.show("HELLO!");
+					}
+				});
 
 		layout.addComponent(menu);
 	}

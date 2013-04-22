@@ -18,6 +18,8 @@ public class OfficeMenu extends CssLayout {
 
 	private static final long serialVersionUID = -3411790058279262819L;
 
+	private static final String STYLE_SELECTED = "selected";
+
 	static final String HEIGHT_CLOSED = "20px";
 	static final String HEIGHT_SECTIONS = "100px";
 	static final String HEIGHT_OPEN = "120px";
@@ -112,7 +114,7 @@ public class OfficeMenu extends CssLayout {
 	 * @param icon
 	 * @param command
 	 */
-	public void addEmptySection(String tabCaption, Resource icon,
+	public Button addEmptySection(String tabCaption, Resource icon,
 			final MenuCommand command) {
 		Button caption = new Button(tabCaption);
 		caption.addStyleName("tabcaption");
@@ -132,6 +134,8 @@ public class OfficeMenu extends CssLayout {
 				}
 			}
 		});
+
+		return caption;
 	}
 
 	/**
@@ -208,6 +212,11 @@ public class OfficeMenu extends CssLayout {
 			} else {
 				open();
 			}
+
+			for (Button tab : tabCaptions.values()) {
+				tab.removeStyleName(STYLE_SELECTED);
+			}
+			event.getButton().addStyleName(STYLE_SELECTED);
 		}
 	};
 

@@ -1,12 +1,16 @@
 package com.merap.promoren.component.officemenu;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.wolfie.popupextension.PopupExtension;
+import com.github.wolfie.popupextension.PopupExtension.PopupVisibilityListener;
 import com.vaadin.server.Resource;
-import com.vaadin.ui.Button;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.MenuBar.Command;
-import com.vaadin.ui.themes.BaseTheme;
 
 /**
  * Single Menu Item. Always resides inside a {@link MenuSection}.
@@ -15,52 +19,85 @@ import com.vaadin.ui.themes.BaseTheme;
  * 
  * @author Thomas
  */
-public class MenuItem extends CustomComponent {
+public class MenuItem extends SubMenuItem {
+
+	private static final String SPAN = "<span/>";
+
+	private static final String STYLE_SUBITEMS = "hassubitems";
 
 	private static final long serialVersionUID = 1093584532903074019L;
 
-	private MenuCommand command;
-
-	protected final Button realComponent = new Button();
+	private final List<SubMenuItem> subItems = new ArrayList<SubMenuItem>();
 
 	public MenuItem(String caption, Resource icon, MenuCommand command) {
-		super();
-
-		setCompositionRoot(realComponent);
-
-		this.command = command;
-
-//		setHeight("100%");
-//		setWidth("70px");
-		setSizeUndefined();
-
-//		realComponent.setHeight("100%");
-//		realComponent.setWidth("70px");
-
+		super(caption, icon, command);
 		addStyleName("menuitem");
+		removeStyleName("submenuitem");
 
-		realComponent.setCaption(caption);
-		realComponent.setIcon(icon);
+		realComponent.setHtmlContentAllowed(true);
 
 		realComponent.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = -615975673819020510L;
 
 			@Override
-			public void buttonClick(ClickEvent event) {
-				if (MenuItem.this.command != null) {
-					MenuItem.this.command.menuItemClicked(MenuItem.this);
+			public void buttonClick(final ClickEvent event) {
+				if (!subItems.isEmpty()) {
+					// open popup
+
+					PopupExtension popup = PopupExtension.extend(realComponent);
+					popup.setAnchor(Alignment.BOTTOM_LEFT);
+					// popup.setDirection(Alignment.TOP_CENTER);
+					popup.closeOnOutsideMouseClick(true);
+					// our styles offset the caption, try to align
+					// popup.setOffset(-10, 35);
+					popup.open();
+
+					CssLayout popupContent = new CssLayout();
+					popup.setContent(popupContent);
+
+					for (SubMenuItem item : subItems) {
+						popupContent.addComponent(item);
+					}
+
+					// fix styles as long as popup is open
+					event.getButton().addStyleName("selected");
+					popup.addPopupVisibilityListener(new PopupVisibilityListener() {
+						@Override
+						public void visibilityChanged(boolean isOpened) {
+							if (!isOpened) {
+								event.getButton().removeStyleName("selected");
+							}
+						}
+					});
 				}
 			}
 		});
 	}
 
-	public MenuCommand getCommand() {
-		return command;
+	public SubMenuItem addSubItem(String caption, Resource icon,
+			MenuCommand command) {
+		SubMenuItem item = new SubMenuItem(caption, icon, command);
+		subItems.add(item);
+
+		addStyleName(STYLE_SUBITEMS);
+
+		String oldCaption = realComponent.getCaption();
+		oldCaption += SPAN;
+		realComponent.setCaption(oldCaption);
+
+		return item;
 	}
 
-	public void setCommand(MenuCommand command) {
-		this.command = command;
+	public void removeSubItem(SubMenuItem item) {
+		subItems.remove(item);
+		if (subItems.isEmpty()) {
+			removeStyleName(STYLE_SUBITEMS);
+
+			String oldCaption = realComponent.getCaption();
+			oldCaption.replaceAll(SPAN, "");
+			realComponent.setCaption(oldCaption);
+		}
 	}
 
 }
