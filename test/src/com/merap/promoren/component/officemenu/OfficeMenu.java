@@ -27,7 +27,7 @@ public class OfficeMenu extends CssLayout {
 			"images/arrow-down.png");
 
 	private final HorizontalLayout captions = new HorizontalLayout();
-	private final Panel currentTab = new Panel();
+	private final Panel ribbonPanel = new Panel();
 
 	private final Map<String, MenuTab> tabs = new HashMap<String, MenuTab>();
 	private final Map<String, Button> tabCaptions = new HashMap<String, Button>();
@@ -39,17 +39,14 @@ public class OfficeMenu extends CssLayout {
 		super();
 
 		setWidth("100%");
-		// setHeight(HEIGHT_CLOSED);
 		addStyleName("officemenu");
 		captions.addStyleName("tabcaptions");
 
-		// captions.setHeight(HEIGHT_CLOSED);
 		captions.setWidth("100%");
-		// currentTab.setHeight(HEIGHT_SECTIONS);
-		currentTab.setWidth("100%");
+		ribbonPanel.setWidth("100%");
 
 		addComponent(captions);
-		addComponent(currentTab);
+		addComponent(ribbonPanel);
 
 		closeButton = new Button();
 		closeButton.addStyleName("headerclose");
@@ -62,27 +59,39 @@ public class OfficeMenu extends CssLayout {
 		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
-	protected void showTabs() {
-		// TODO Auto-generated method stub
-		currentTab.setVisible(true);
+	/**
+	 * Sets the ribbon visibility
+	 */
+	protected void showTabs(boolean show) {
+		ribbonPanel.setVisible(show);
 	}
 
+	/**
+	 * Opens the ribbons and changes close button icon
+	 */
 	protected void open() {
-		// setHeight(HEIGHT_OPEN);
-		// currentTab.setHeight(HEIGHT_SECTIONS);
-		showTabs();
+		showTabs(true);
 		open = true;
 		closeButton.setIcon(ARROW_DOWN);
 	}
 
+	/**
+	 * Closes the ribbons and changes close button icon
+	 */
 	protected void close() {
-		// setHeight(HEIGHT_CLOSED);
-		// currentTab.setHeight("0px");
-		currentTab.setVisible(false);
+		showTabs(false);
 		open = false;
 		closeButton.setIcon(ARROW_UP);
 	}
 
+	/**
+	 * Adds a new {@link MenuSection} to the selected ribbon. If the ribbon
+	 * doesn't exist, it is created.
+	 * 
+	 * @param tabCaption
+	 * @param desc
+	 * @return
+	 */
 	public MenuSection addSection(String tabCaption, String desc) {
 
 		MenuTab tab = tabs.get(tabCaption);
@@ -95,6 +104,44 @@ public class OfficeMenu extends CssLayout {
 		return section;
 	}
 
+	/**
+	 * Adds a menu item that has only a {@link MenuCommand} instead of sub menu
+	 * items. Clicking on this will not change the selected ribbon.
+	 * 
+	 * @param tabCaption
+	 * @param icon
+	 * @param command
+	 */
+	public void addEmptySection(String tabCaption, Resource icon,
+			final MenuCommand command) {
+		Button caption = new Button(tabCaption);
+		caption.addStyleName("tabcaption");
+		caption.addStyleName("empty");
+		tabCaptions.put(tabCaption, caption);
+
+		captions.addComponent(caption, captions.getComponentCount() - 1);
+
+		caption.addClickListener(new ClickListener() {
+
+			private static final long serialVersionUID = -615975673819020510L;
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				if (command != null) {
+					command.menuItemClicked(null);
+				}
+			}
+		});
+	}
+
+	/**
+	 * Adds a new menu ribbon that can hold {@link MenuSection}s.
+	 * 
+	 * @param tabCaption
+	 * @param icon
+	 * @param select
+	 * @return
+	 */
 	public MenuTab addTab(String tabCaption, Resource icon, boolean select) {
 		MenuTab tab = new MenuTab();
 		tabs.put(tabCaption, tab);
@@ -114,14 +161,23 @@ public class OfficeMenu extends CssLayout {
 		return tab;
 	}
 
+	/**
+	 * @see OfficeMenu#addTab(String, Resource, boolean)
+	 */
 	public MenuTab addTab(String tabCaption, Resource icon) {
 		return addTab(tabCaption, icon, false);
 	}
 
+	/**
+	 * @see OfficeMenu#addTab(String, Resource, boolean)
+	 */
 	public MenuTab addTab(String tabCaption) {
-		return addTab(tabCaption, null, false);
+		return addTab(tabCaption, null);
 	}
 
+	/**
+	 * Listener for upper row of buttons, to change ribbons
+	 */
 	private final ClickListener tabChangeListener = new ClickListener() {
 
 		private static final long serialVersionUID = 4397027389196697692L;
@@ -130,11 +186,16 @@ public class OfficeMenu extends CssLayout {
 		public void buttonClick(ClickEvent event) {
 			String tabCaption = event.getButton().getCaption();
 
-			currentTab.setContent(tabs.get(tabCaption));
+			ribbonPanel.setContent(tabs.get(tabCaption));
 
-			showTabs();
+			// show ribbon but don't change close button icon
+			showTabs(true);
 		}
 	};
+
+	/**
+	 * Listener for the close button on the upper right
+	 */
 	private final ClickListener closeButtonListener = new ClickListener() {
 
 		private static final long serialVersionUID = -933901482894951128L;
