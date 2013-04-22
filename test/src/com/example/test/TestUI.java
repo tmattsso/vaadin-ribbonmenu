@@ -1,6 +1,7 @@
 package com.example.test;
 
 import com.merap.promoren.component.officemenu.MenuCommand;
+import com.merap.promoren.component.officemenu.MenuItem;
 import com.merap.promoren.component.officemenu.MenuSection;
 import com.merap.promoren.component.officemenu.MenuTab;
 import com.merap.promoren.component.officemenu.OfficeMenu;
@@ -58,7 +59,18 @@ public class TestUI extends UI {
 		section = tab.addSection("clipboard");
 		section.addItem("Cut", new ThemeResource("images/add.png"));
 		section.addItem("Copy", new ThemeResource("images/add.png"));
-		section.addItem("Paste", new ThemeResource("images/add.png"));
+
+		MenuItem item = section.addItem("Paste", new ThemeResource(
+				"images/add.png"));
+
+		item.addSubItem("lool", new ThemeResource("images/add.png"),
+				new MenuCommand() {
+
+					@Override
+					public void menuItemClicked(SubMenuItem item) {
+						Notification.show("HELLO!");
+					}
+				});
 
 		layout.addComponent(menu);
 	}

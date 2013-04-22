@@ -75,5 +75,23 @@ $officemenu-button-height: 68px;
 		.v-slot-menusection {
 			border-right: 1px solid #AAA;
 		}
+		
+		.menuitem.hassubitems .v-button-caption span {
+			display: block;
+			height: 16px;
+			width: 16px;
+			
+			margin: auto;
+			margin-top: 3px;
+			
+			background-image: url("images/arrow-down.png");
+			
+		}
+		
 	}
+	
 }
+
+	.h-popupextension {
+		padding: 0 !important;
+	}

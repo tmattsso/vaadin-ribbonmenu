@@ -3,9 +3,13 @@ package com.merap.promoren.component.officemenu;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.wolfie.popupextension.PopupExtension;
+import com.github.wolfie.popupextension.PopupExtension.PopupVisibilityListener;
 import com.vaadin.server.Resource;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.MenuBar.Command;
 
 /**
@@ -16,6 +20,8 @@ import com.vaadin.ui.MenuBar.Command;
  * @author Thomas
  */
 public class MenuItem extends SubMenuItem {
+
+	private static final String SPAN = "<span/>";
 
 	private static final String STYLE_SUBITEMS = "hassubitems";
 
@@ -28,15 +34,42 @@ public class MenuItem extends SubMenuItem {
 		addStyleName("menuitem");
 		removeStyleName("submenuitem");
 
+		realComponent.setHtmlContentAllowed(true);
+
 		realComponent.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = -615975673819020510L;
 
 			@Override
-			public void buttonClick(ClickEvent event) {
+			public void buttonClick(final ClickEvent event) {
 				if (!subItems.isEmpty()) {
 					// open popup
 
+					PopupExtension popup = PopupExtension.extend(realComponent);
+					popup.setAnchor(Alignment.BOTTOM_LEFT);
+					// popup.setDirection(Alignment.TOP_CENTER);
+					popup.closeOnOutsideMouseClick(true);
+					// our styles offset the caption, try to align
+					// popup.setOffset(-10, 35);
+					popup.open();
+
+					CssLayout popupContent = new CssLayout();
+					popup.setContent(popupContent);
+
+					for (SubMenuItem item : subItems) {
+						popupContent.addComponent(item);
+					}
+
+					// fix styles as long as popup is open
+					event.getButton().addStyleName("selected");
+					popup.addPopupVisibilityListener(new PopupVisibilityListener() {
+						@Override
+						public void visibilityChanged(boolean isOpened) {
+							if (!isOpened) {
+								event.getButton().removeStyleName("selected");
+							}
+						}
+					});
 				}
 			}
 		});
@@ -49,6 +82,10 @@ public class MenuItem extends SubMenuItem {
 
 		addStyleName(STYLE_SUBITEMS);
 
+		String oldCaption = realComponent.getCaption();
+		oldCaption += SPAN;
+		realComponent.setCaption(oldCaption);
+
 		return item;
 	}
 
@@ -56,6 +93,10 @@ public class MenuItem extends SubMenuItem {
 		subItems.remove(item);
 		if (subItems.isEmpty()) {
 			removeStyleName(STYLE_SUBITEMS);
+
+			String oldCaption = realComponent.getCaption();
+			oldCaption.replaceAll(SPAN, "");
+			realComponent.setCaption(oldCaption);
 		}
 	}
 
