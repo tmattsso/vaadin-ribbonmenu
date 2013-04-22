@@ -26,7 +26,7 @@ public class OfficeMenu extends CssLayout {
 	private final Resource ARROW_DOWN = new ThemeResource(
 			"images/arrow-down.png");
 
-	private final HorizontalLayout captions = new HorizontalLayout();
+	private final CssLayout captions = new CssLayout();
 	private final Panel currentTab = new Panel();
 
 	private final Map<String, MenuTab> tabs = new HashMap<String, MenuTab>();
@@ -57,8 +57,8 @@ public class OfficeMenu extends CssLayout {
 		close();
 		
 		captions.addComponent(closeButton);
-		captions.setExpandRatio(closeButton, 1);
-		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
+//		captions.setExpandRatio(closeButton, 1);
+//		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
 	protected void open() {
