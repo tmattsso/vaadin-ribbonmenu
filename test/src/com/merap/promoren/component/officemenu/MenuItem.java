@@ -1,12 +1,12 @@
 package com.merap.promoren.component.officemenu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.server.Resource;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.MenuBar.Command;
-import com.vaadin.ui.themes.BaseTheme;
 
 /**
  * Single Menu Item. Always resides inside a {@link MenuSection}.
@@ -15,32 +15,18 @@ import com.vaadin.ui.themes.BaseTheme;
  * 
  * @author Thomas
  */
-public class MenuItem extends CustomComponent {
+public class MenuItem extends SubMenuItem {
+
+	private static final String STYLE_SUBITEMS = "hassubitems";
 
 	private static final long serialVersionUID = 1093584532903074019L;
 
-	private MenuCommand command;
-
-	protected final Button realComponent = new Button();
+	private final List<SubMenuItem> subItems = new ArrayList<SubMenuItem>();
 
 	public MenuItem(String caption, Resource icon, MenuCommand command) {
-		super();
-
-		setCompositionRoot(realComponent);
-
-		this.command = command;
-
-//		setHeight("100%");
-//		setWidth("70px");
-		setSizeUndefined();
-
-//		realComponent.setHeight("100%");
-//		realComponent.setWidth("70px");
-
+		super(caption, icon, command);
 		addStyleName("menuitem");
-
-		realComponent.setCaption(caption);
-		realComponent.setIcon(icon);
+		removeStyleName("submenuitem");
 
 		realComponent.addClickListener(new ClickListener() {
 
@@ -48,19 +34,29 @@ public class MenuItem extends CustomComponent {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				if (MenuItem.this.command != null) {
-					MenuItem.this.command.menuItemClicked(MenuItem.this);
+				if (!subItems.isEmpty()) {
+					// open popup
+
 				}
 			}
 		});
 	}
 
-	public MenuCommand getCommand() {
-		return command;
+	public SubMenuItem addSubItem(String caption, Resource icon,
+			MenuCommand command) {
+		SubMenuItem item = new SubMenuItem(caption, icon, command);
+		subItems.add(item);
+
+		addStyleName(STYLE_SUBITEMS);
+
+		return item;
 	}
 
-	public void setCommand(MenuCommand command) {
-		this.command = command;
+	public void removeSubItem(SubMenuItem item) {
+		subItems.remove(item);
+		if (subItems.isEmpty()) {
+			removeStyleName(STYLE_SUBITEMS);
+		}
 	}
 
 }

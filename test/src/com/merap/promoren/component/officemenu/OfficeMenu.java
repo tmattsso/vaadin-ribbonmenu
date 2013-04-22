@@ -112,7 +112,7 @@ public class OfficeMenu extends CssLayout {
 	 * @param icon
 	 * @param command
 	 */
-	public void addEmptySection(String tabCaption, Resource icon,
+	public Button addEmptySection(String tabCaption, Resource icon,
 			final MenuCommand command) {
 		Button caption = new Button(tabCaption);
 		caption.addStyleName("tabcaption");
@@ -132,6 +132,8 @@ public class OfficeMenu extends CssLayout {
 				}
 			}
 		});
+
+		return caption;
 	}
 
 	/**

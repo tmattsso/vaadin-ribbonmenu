@@ -2,5 +2,5 @@ package com.merap.promoren.component.officemenu;
 
 public interface MenuCommand {
 
-	public void menuItemClicked(MenuItem item);
+	public void menuItemClicked(SubMenuItem item);
 }

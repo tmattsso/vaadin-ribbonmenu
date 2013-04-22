@@ -1,10 +1,10 @@
 package com.example.test;
 
 import com.merap.promoren.component.officemenu.MenuCommand;
-import com.merap.promoren.component.officemenu.MenuItem;
 import com.merap.promoren.component.officemenu.MenuSection;
 import com.merap.promoren.component.officemenu.MenuTab;
 import com.merap.promoren.component.officemenu.OfficeMenu;
+import com.merap.promoren.component.officemenu.SubMenuItem;
 import com.merap.promoren.component.officemenu.ToggleMenuItem;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
@@ -33,7 +33,7 @@ public class TestUI extends UI {
 				new MenuCommand() {
 
 					@Override
-					public void menuItemClicked(MenuItem item) {
+					public void menuItemClicked(SubMenuItem item) {
 						Notification.show("File menu clicked!");
 					}
 				});
@@ -41,7 +41,7 @@ public class TestUI extends UI {
 		MenuTab tab = menu.addTab("Create");
 
 		MenuSection section = tab.addSection("create");
-		section.addItem(new ToggleMenuItem("Create", new ThemeResource(
+		section.addItem(new ToggleMenuItem("Toggle me", new ThemeResource(
 				"images/add.png"), null));
 		section.addItem("Create longer", new ThemeResource("images/add.png"));
 		section.addItem("Create a really long thing", new ThemeResource(
