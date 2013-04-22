@@ -5,14 +5,12 @@ import java.util.Map;
 
 import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.themes.ChameleonTheme;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.themes.ChameleonTheme;
 
 public class OfficeMenu extends CssLayout {
 
@@ -55,10 +53,10 @@ public class OfficeMenu extends CssLayout {
 		closeButton.addStyleName(ChameleonTheme.BUTTON_BORDERLESS);
 		closeButton.addClickListener(closeButtonListener);
 		close();
-		
+
 		captions.addComponent(closeButton);
-//		captions.setExpandRatio(closeButton, 1);
-//		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
+		// captions.setExpandRatio(closeButton, 1);
+		// captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
 	/**
@@ -194,6 +192,11 @@ public class OfficeMenu extends CssLayout {
 
 			// show ribbon but don't change close button icon
 			showTabs(true);
+
+			for (Button tab : tabCaptions.values()) {
+				tab.removeStyleName(STYLE_SELECTED);
+			}
+			event.getButton().addStyleName(STYLE_SELECTED);
 		}
 	};
 
@@ -212,11 +215,6 @@ public class OfficeMenu extends CssLayout {
 			} else {
 				open();
 			}
-
-			for (Button tab : tabCaptions.values()) {
-				tab.removeStyleName(STYLE_SELECTED);
-			}
-			event.getButton().addStyleName(STYLE_SELECTED);
 		}
 	};
 
