@@ -10,6 +10,17 @@ $officemenu-button-height: 68px;
 		
 		> .v-panel {
 			margin-top: -1px;
+			position: relative;
+			z-index: 10;
+			
+			> .v-panel-content {
+				padding: 5px;
+				background: #FFF url('rib-back.png') repeat-x bottom;
+				background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#eaedf1));
+				background: -moz-linear-gradient(#ffffff, #eaedf1);
+				overflow: hidden;
+				min-width: 500px;
+			}
 		}
 		
 		.tabcaptions {
@@ -31,7 +42,6 @@ $officemenu-button-height: 68px;
 			-moz-border-radius: 4px 4px 0px 0px;
 			border-radius: 4px 4px 0px 0px;
 			position: relative;
-			z-index: 45;
 			
 			> .v-button-wrap {
 				display: inline;
@@ -43,6 +53,7 @@ $officemenu-button-height: 68px;
 				border: 1px solid #b6babf;
 				border-bottom-color: transparent;
 				cursor: pointer;
+				z-index: 0;
 			}
 		}
 		
@@ -84,14 +95,19 @@ $officemenu-button-height: 68px;
 			}
 		}
 
-		.v-slot-menusection > div {
-			position: relative;
-		}
+		.v-slot-menusection {
+			border-right: 1px solid #AAA;
 		
+			 > .v-has-caption {
+				position: relative;
+			}
+		}
+
 		.menusection {
 			padding-bottom: 20px;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
+			margin: 0 5px;
 		}
 		
 		.v-button-link .v-button-wrap,
@@ -104,10 +120,7 @@ $officemenu-button-height: 68px;
 			bottom: 0;
 			text-align: center;
 			width: 100%;
-		}
-		
-		.v-slot-menusection {
-			border-right: 1px solid #AAA;
+			color: #5B626C;
 		}
 		
 		.menuitem.hassubitems .v-button-caption span {
@@ -122,10 +135,8 @@ $officemenu-button-height: 68px;
 			
 		}
 	}	
-
-	
 }
 
-	.h-popupextension {
-		padding: 0 !important;
-	}
+.h-popupextension {
+	padding: 0 !important;
+}
