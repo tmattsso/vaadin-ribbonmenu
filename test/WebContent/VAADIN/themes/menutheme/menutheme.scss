@@ -1,57 +1,79 @@
 @CHARSET "ISO-8859-1";
 
-@IMPORT "../chameleon/chameleon.scss";
+$officemenu-icon-size: 32px;
+$officemenu-button-width: 58px;
+$officemenu-button-height: 68px;
 
 @mixin menutheme {
-	@include chameleon;
-	
 	.officemenu {
 		background-color: #FFF;
-	}
-	
-	.officemenu .menuitem img {
-		display: block;
-		width: 50px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 10px;
-	}
-	
-	.officemenu .menuitem .v-button-caption {
-		display: inline-block;
-		text-align: center;
-		width: 100%;
 		
-		overflow: hidden;
+		.v-button.tabcaption {
+			background-color: rgb(245, 245, 245);
+		}
+		
+		.menuitem {
+			img.v-icon {
+				width: $officemenu-icon-size;
+				display: block;
+				margin: auto;
+			}
+			
+			> .v-button {
+				width: $officemenu-button-width;
+				height: $officemenu-button-height;
+				border-color: transparent;
+				background: transparent;
+				
+				&:hover {
+					border: 1px solid #F1C43F;
+					background: #fdeeb3;
+					cursor: pointer;
+				}
+				
+				&:active > .v-button-wrap {
+					border: none;
+					border-top: 1px solid transparent;
+				}
+				
+				> .v-button-wrap {
+					padding: 0;
+					
+					> .v-button-caption {
+						white-space: normal;
+					}
+				}
+				
+				&.down > .v-button-wrap {
+					background-color: yellow;
+				}
+			}
+		}
+
+		.v-slot-menusection > div {
+			position: relative;
+		}
+		
+		.menusection {
+			padding-bottom: 20px;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		
+		.v-button-link .v-button-wrap,
+		.v-button-borderless .v-button-wrap {
+			display: block;
+		}
+		
+		.v-caption-menusection {
+			position: absolute;
+			bottom: 0;
+			text-align: center;
+			width: 100%;
+		}
+		
+		.v-slot-menusection {
+			border-right: 1px solid #AAA;
+		}
 	}
-	
-	.officemenu .menuitem .v-button-wrap {
-		padding-bottom: 5px;
-		border-radius: 5px;
-		margin: 3px;
-	}
-	
-	.officemenu .menuitem .v-button-wrap:hover {
-		background-color: rgba(0,0,0,0.2);
-	}
-	
-	.officemenu .menuitem.down .v-button-wrap {
-		background-color: rgba(255,0,0,0.2);
-	}
-	
-	.officemenu .v-slot-menusection > div {
-		position: relative;
-	}
-	
-	.officemenu .v-caption-menusection {
-		position: absolute;
-		bottom: 0;
-		text-align: center;
-		width: 100%;
-	}
-	
-	.officemenu .v-slot-menusection {
-		border-right: 1px solid #AAA;
-	}
-	
 }

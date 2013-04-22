@@ -30,13 +30,13 @@ public class MenuItem extends CustomComponent {
 
 		this.command = command;
 
-		setHeight("100%");
-		setWidth("70px");
+//		setHeight("100%");
+//		setWidth("70px");
+		setSizeUndefined();
 
-		realComponent.setHeight("100%");
-		realComponent.setWidth("70px");
+//		realComponent.setHeight("100%");
+//		realComponent.setWidth("70px");
 
-		realComponent.addStyleName(BaseTheme.BUTTON_LINK);
 		addStyleName("menuitem");
 
 		realComponent.setCaption(caption);

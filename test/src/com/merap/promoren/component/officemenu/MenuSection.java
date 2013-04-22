@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.server.Resource;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 
 /**
@@ -15,7 +16,7 @@ import com.vaadin.ui.HorizontalLayout;
  * 
  * @author Thomas
  */
-public class MenuSection extends HorizontalLayout {
+public class MenuSection extends CssLayout {
 
 	private static final long serialVersionUID = 5917473030371445997L;
 
@@ -27,7 +28,7 @@ public class MenuSection extends HorizontalLayout {
 
 		// component expands with additional buttons
 		setWidth(null);
-		setHeight(OfficeMenu.HEIGHT_SECTIONS);
+//		setHeight(OfficeMenu.HEIGHT_SECTIONS);
 		addStyleName("menusection");
 	}
 

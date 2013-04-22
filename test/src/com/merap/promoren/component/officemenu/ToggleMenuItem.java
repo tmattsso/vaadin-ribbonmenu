@@ -4,6 +4,7 @@ import com.vaadin.server.Resource;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
+import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * Single Menu Item. Always resides inside a {@link MenuSection}.

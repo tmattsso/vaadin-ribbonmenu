@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
+@IMPORT "../chameleon/chameleon.scss";
 @import "menutheme.scss";
 
-/* Removed hyphen (-) as workaround for http://dev.vaadin.com/ticket/10708 */
 .menutheme {
+	@include chameleon;
 	@include menutheme;
 }
