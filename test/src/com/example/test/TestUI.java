@@ -52,7 +52,6 @@ public class TestUI extends UI {
 		section.addItem("Save", new ThemeResource("images/add.png"));
 		section.addItem("Save As", new ThemeResource("images/add.png"));
 		section.addItem("Save Copy As", new ThemeResource("images/add.png"));
-		section.setEnabled(false);
 
 		tab = menu.addTab("Edit");
 

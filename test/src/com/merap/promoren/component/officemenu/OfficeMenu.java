@@ -9,10 +9,10 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.themes.ChameleonTheme;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.themes.ChameleonTheme;
 
 public class OfficeMenu extends CssLayout {
 
@@ -28,7 +28,7 @@ public class OfficeMenu extends CssLayout {
 	private final Resource ARROW_DOWN = new ThemeResource(
 			"images/arrow-down.png");
 
-	private final HorizontalLayout captions = new HorizontalLayout();
+	private final CssLayout captions = new CssLayout();
 	private final Panel ribbonPanel = new Panel();
 
 	private final Map<String, MenuTab> tabs = new HashMap<String, MenuTab>();
@@ -55,10 +55,10 @@ public class OfficeMenu extends CssLayout {
 		closeButton.addStyleName(ChameleonTheme.BUTTON_BORDERLESS);
 		closeButton.addClickListener(closeButtonListener);
 		close();
-
+		
 		captions.addComponent(closeButton);
-		captions.setExpandRatio(closeButton, 1);
-		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
+//		captions.setExpandRatio(closeButton, 1);
+//		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
 	/**

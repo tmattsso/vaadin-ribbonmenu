@@ -8,8 +8,41 @@ $officemenu-button-height: 68px;
 	.officemenu {
 		background-color: #FFF;
 		
+		> .v-panel {
+			margin-top: -1px;
+		}
+		
+		.tabcaptions {
+			position: relative;
+			 
+			> .v-button.headerclose {
+				position: absolute;
+				right: 0;
+			}
+		}
+		
 		.v-button.tabcaption {
-			background-color: rgb(245, 245, 245);
+			margin: 0 5px;
+			padding: 5px 10px;
+			color: #444;
+			background: transparent;
+			border: 1px solid transparent;
+			-webkit-border-radius: 4px 4px 0px 0px;
+			-moz-border-radius: 4px 4px 0px 0px;
+			border-radius: 4px 4px 0px 0px;
+			position: relative;
+			z-index: 40;
+			
+			> .v-button-wrap {
+				display: inline;
+				background: transparent;
+			}
+			
+			&:hover {
+				background: #f1f3f4;
+				border: 1px solid #b6babf;
+				cursor: pointer;
+			}
 		}
 		
 		.menuitem {
