@@ -31,7 +31,7 @@ $officemenu-button-height: 68px;
 			-moz-border-radius: 4px 4px 0px 0px;
 			border-radius: 4px 4px 0px 0px;
 			position: relative;
-			z-index: 40;
+			z-index: 45;
 			
 			> .v-button-wrap {
 				display: inline;
@@ -41,6 +41,7 @@ $officemenu-button-height: 68px;
 			&:hover {
 				background: #f1f3f4;
 				border: 1px solid #b6babf;
+				border-bottom-color: transparent;
 				cursor: pointer;
 			}
 		}
@@ -108,5 +109,5 @@ $officemenu-button-height: 68px;
 		.v-slot-menusection {
 			border-right: 1px solid #AAA;
 		}
-	}
-}
+		}
+	}	
