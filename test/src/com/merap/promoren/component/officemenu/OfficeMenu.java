@@ -9,10 +9,10 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.themes.ChameleonTheme;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.themes.ChameleonTheme;
 
 public class OfficeMenu extends CssLayout {
 
@@ -32,19 +32,20 @@ public class OfficeMenu extends CssLayout {
 	private final Map<String, MenuTab> tabs = new HashMap<String, MenuTab>();
 	private final Map<String, Button> tabCaptions = new HashMap<String, Button>();
 
+	private final Button closeButton;
 	private boolean open = false;
 
 	public OfficeMenu() {
 		super();
 
 		setWidth("100%");
-//		setHeight(HEIGHT_CLOSED);
+		// setHeight(HEIGHT_CLOSED);
 		addStyleName("officemenu");
 		captions.addStyleName("tabcaptions");
 
-//		captions.setHeight(HEIGHT_CLOSED);
+		// captions.setHeight(HEIGHT_CLOSED);
 		captions.setWidth("100%");
-//		currentTab.setHeight(HEIGHT_SECTIONS);
+		// currentTab.setHeight(HEIGHT_SECTIONS);
 		currentTab.setWidth("100%");
 
 		addComponent(captions);
@@ -55,26 +56,31 @@ public class OfficeMenu extends CssLayout {
 		closeButton.addStyleName(ChameleonTheme.BUTTON_BORDERLESS);
 		closeButton.addClickListener(closeButtonListener);
 		close();
-		
+
 		captions.addComponent(closeButton);
 		captions.setExpandRatio(closeButton, 1);
 		captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
-	protected void open() {
-//		setHeight(HEIGHT_OPEN);
-//		currentTab.setHeight(HEIGHT_SECTIONS);
+	protected void showTabs() {
+		// TODO Auto-generated method stub
 		currentTab.setVisible(true);
+	}
+
+	protected void open() {
+		// setHeight(HEIGHT_OPEN);
+		// currentTab.setHeight(HEIGHT_SECTIONS);
+		showTabs();
 		open = true;
-		closeButton.setIcon(ARROW_UP);
+		closeButton.setIcon(ARROW_DOWN);
 	}
 
 	protected void close() {
-//		setHeight(HEIGHT_CLOSED);
-//		currentTab.setHeight("0px");
+		// setHeight(HEIGHT_CLOSED);
+		// currentTab.setHeight("0px");
 		currentTab.setVisible(false);
 		open = false;
-		closeButton.setIcon(ARROW_DOWN);
+		closeButton.setIcon(ARROW_UP);
 	}
 
 	public MenuSection addSection(String tabCaption, String desc) {
@@ -126,7 +132,7 @@ public class OfficeMenu extends CssLayout {
 
 			currentTab.setContent(tabs.get(tabCaption));
 
-			open();
+			showTabs();
 		}
 	};
 	private final ClickListener closeButtonListener = new ClickListener() {
@@ -144,5 +150,4 @@ public class OfficeMenu extends CssLayout {
 		}
 	};
 
-	private final Button closeButton;
 }
