@@ -25,8 +25,7 @@ public class ToggleMenuItem extends MenuItem {
 	public ToggleMenuItem(String caption, Resource icon, MenuCommand command) {
 		super(caption, icon, command);
 
-		addStyleName(STYLE_UNPRESSED);
-
+		realComponent.addStyleName(STYLE_UNPRESSED);
 		realComponent.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = -7075018310285745343L;
@@ -36,12 +35,12 @@ public class ToggleMenuItem extends MenuItem {
 
 				if (isDown) {
 					isDown = false;
-					removeStyleName(STYLE_PRESSED);
-					addStyleName(STYLE_UNPRESSED);
+					realComponent.removeStyleName(STYLE_PRESSED);
+					realComponent.addStyleName(STYLE_UNPRESSED);
 				} else {
 					isDown = true;
-					removeStyleName(STYLE_UNPRESSED);
-					addStyleName(STYLE_PRESSED);
+					realComponent.removeStyleName(STYLE_UNPRESSED);
+					realComponent.addStyleName(STYLE_PRESSED);
 				}
 
 			}

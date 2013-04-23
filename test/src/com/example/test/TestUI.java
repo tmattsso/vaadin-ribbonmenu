@@ -55,7 +55,7 @@ public class TestUI extends UI {
 
 		tab = menu.addTab("Edit");
 
-		section = tab.addSection("clipboard");
+		section = tab.addSection("Clipboard");
 		section.addItem("Cut", new ThemeResource("images/add.png"));
 		section.addItem("Copy", new ThemeResource("images/add.png"));
 

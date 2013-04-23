@@ -1,8 +1,9 @@
 @CHARSET "ISO-8859-1";
 
+$officemenu-font-size: 11px;
 $officemenu-icon-size: 32px;
-$officemenu-button-width: 58px;
-$officemenu-button-height: 68px;
+$officemenu-button-width: 60px;
+$officemenu-button-height: 70px;
 
 @mixin menutheme {
 	.officemenu {
@@ -34,7 +35,7 @@ $officemenu-button-height: 68px;
 		
 		.v-button.tabcaption {
 			margin: 0 5px;
-			padding: 5px 10px;
+			padding: 5px 20px;
 			color: #444;
 			background: transparent;
 			border: 1px solid transparent;
@@ -46,6 +47,8 @@ $officemenu-button-height: 68px;
 			> .v-button-wrap {
 				display: inline;
 				background: transparent;
+				padding: 0;
+				font-size: $officemenu-font-size;
 			}
 			
 			&:hover {
@@ -67,8 +70,8 @@ $officemenu-button-height: 68px;
 			&:active .v-button-wrap,
 			&.v-pressed .v-button-wrap, 
 			&.v-button-down .v-button-wrap {
-				border-color: transparent;
-			}	
+				border: none;
+			}
 		}
 		
 		.menuitem {
@@ -84,27 +87,27 @@ $officemenu-button-height: 68px;
 				border-color: transparent;
 				background: transparent;
 				
-				&:hover {
+				&:hover,
+				&.down {
 					border: 1px solid #F1C43F;
 					background: #fdeeb3;
 					cursor: pointer;
 				}
 				
-				&:active > .v-button-wrap {
+				&:active .v-button-wrap,
+				&.v-pressed .v-button-wrap, 
+				&.v-button-down .v-button-wrap {
 					border: none;
 					border-top: 1px solid transparent;
 				}
 				
 				> .v-button-wrap {
-					padding: 0;
+					padding: 4px 6px;
 					
 					> .v-button-caption {
 						white-space: normal;
+						font-size: $officemenu-font-size;
 					}
-				}
-				
-				&.down > .v-button-wrap {
-					background-color: yellow;
 				}
 			}
 		}
@@ -135,6 +138,7 @@ $officemenu-button-height: 68px;
 			text-align: center;
 			width: 100%;
 			color: #5B626C;
+			font-size: $officemenu-font-size;
 		}
 		
 		.menuitem.hassubitems .v-button-caption span {
@@ -143,10 +147,8 @@ $officemenu-button-height: 68px;
 			width: 16px;
 			
 			margin: auto;
-			margin-top: 3px;
 			
 			background-image: url("images/arrow-down.png");
-			
 		}
 	}	
 }
