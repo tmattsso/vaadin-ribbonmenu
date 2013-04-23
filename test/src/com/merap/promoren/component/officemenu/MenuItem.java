@@ -61,12 +61,12 @@ public class MenuItem extends SubMenuItem {
 					}
 
 					// fix styles as long as popup is open
-					event.getButton().addStyleName("selected");
+					event.getButton().addStyleName("down");
 					popup.addPopupVisibilityListener(new PopupVisibilityListener() {
 						@Override
 						public void visibilityChanged(boolean isOpened) {
 							if (!isOpened) {
-								event.getButton().removeStyleName("selected");
+								event.getButton().removeStyleName("down");
 							}
 						}
 					});
