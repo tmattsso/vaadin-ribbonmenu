@@ -41,14 +41,14 @@ public class TestUI extends UI {
 
 		MenuTab tab = menu.addTab("Create");
 
-		MenuSection section = tab.addSection("create");
+		MenuSection section = tab.addSection("Create");
 		section.addItem(new ToggleMenuItem("Toggle me", new ThemeResource(
 				"images/add.png"), null));
 		section.addItem("Create longer", new ThemeResource("images/add.png"));
 		section.addItem("Create a really long thing", new ThemeResource(
 				"images/add.png"));
 
-		section = tab.addSection("save");
+		section = tab.addSection("Save");
 		section.addItem("Save", new ThemeResource("images/add.png"));
 		section.addItem("Save As", new ThemeResource("images/add.png"));
 		section.addItem("Save Copy As", new ThemeResource("images/add.png"));

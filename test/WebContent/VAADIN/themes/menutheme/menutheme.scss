@@ -55,6 +55,20 @@ $officemenu-button-height: 68px;
 				cursor: pointer;
 				z-index: 0;
 			}
+			
+			&.selected {
+				background: #fff;
+				border: 1px solid #b6babf;
+				border-bottom: 1px solid #fff;
+				cursor: default;
+				z-index: 20;
+			}
+			
+			&:active .v-button-wrap,
+			&.v-pressed .v-button-wrap, 
+			&.v-button-down .v-button-wrap {
+				border-color: transparent;
+			}	
 		}
 		
 		.menuitem {
