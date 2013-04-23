@@ -154,3 +154,7 @@ $officemenu-button-height: 68px;
 .h-popupextension {
 	padding: 0 !important;
 }
+
+.h-popupextension .v-layout .menuitem {
+	display: block;
+}

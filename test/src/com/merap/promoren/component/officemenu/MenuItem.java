@@ -29,8 +29,11 @@ public class MenuItem extends SubMenuItem {
 
 	private final List<SubMenuItem> subItems = new ArrayList<SubMenuItem>();
 
+	private PopupExtension popup;
+
 	public MenuItem(String caption, Resource icon, MenuCommand command) {
-		super(caption, icon, command);
+		super(caption, icon, command, null);
+
 		addStyleName("menuitem");
 		removeStyleName("submenuitem");
 
@@ -45,12 +48,9 @@ public class MenuItem extends SubMenuItem {
 				if (!subItems.isEmpty()) {
 					// open popup
 
-					PopupExtension popup = PopupExtension.extend(realComponent);
+					popup = PopupExtension.extend(realComponent);
 					popup.setAnchor(Alignment.BOTTOM_LEFT);
-					// popup.setDirection(Alignment.TOP_CENTER);
 					popup.closeOnOutsideMouseClick(true);
-					// our styles offset the caption, try to align
-					// popup.setOffset(-10, 35);
 					popup.open();
 
 					CssLayout popupContent = new CssLayout();
@@ -77,7 +77,7 @@ public class MenuItem extends SubMenuItem {
 
 	public SubMenuItem addSubItem(String caption, Resource icon,
 			MenuCommand command) {
-		SubMenuItem item = new SubMenuItem(caption, icon, command);
+		SubMenuItem item = new SubMenuItem(caption, icon, command, this);
 		subItems.add(item);
 
 		addStyleName(STYLE_SUBITEMS);
@@ -97,6 +97,12 @@ public class MenuItem extends SubMenuItem {
 			String oldCaption = realComponent.getCaption();
 			oldCaption.replaceAll(SPAN, "");
 			realComponent.setCaption(oldCaption);
+		}
+	}
+
+	void closePopup() {
+		if (popup != null) {
+			popup.close();
 		}
 	}
 
