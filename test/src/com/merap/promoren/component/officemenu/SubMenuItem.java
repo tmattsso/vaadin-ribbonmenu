@@ -22,7 +22,8 @@ public class SubMenuItem extends CustomComponent {
 
 	protected final Button realComponent = new Button();
 
-	public SubMenuItem(String caption, Resource icon, MenuCommand command) {
+	public SubMenuItem(String caption, Resource icon, MenuCommand command,
+			final MenuItem parent) {
 
 		super();
 
@@ -46,6 +47,9 @@ public class SubMenuItem extends CustomComponent {
 			public void buttonClick(ClickEvent event) {
 				if (SubMenuItem.this.command != null) {
 					SubMenuItem.this.command.menuItemClicked(SubMenuItem.this);
+				}
+				if (parent != null) {
+					parent.closePopup();
 				}
 			}
 		});

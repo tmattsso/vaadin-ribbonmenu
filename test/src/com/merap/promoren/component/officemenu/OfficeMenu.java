@@ -35,6 +35,8 @@ public class OfficeMenu extends CssLayout {
 	private final Button closeButton;
 	private boolean open = false;
 
+	private String selectedCaption;
+
 	public OfficeMenu() {
 		super();
 
@@ -55,8 +57,6 @@ public class OfficeMenu extends CssLayout {
 		close();
 
 		captions.addComponent(closeButton);
-		// captions.setExpandRatio(closeButton, 1);
-		// captions.setComponentAlignment(closeButton, Alignment.MIDDLE_RIGHT);
 	}
 
 	/**
@@ -186,9 +186,9 @@ public class OfficeMenu extends CssLayout {
 
 		@Override
 		public void buttonClick(ClickEvent event) {
-			String tabCaption = event.getButton().getCaption();
+			selectedCaption = event.getButton().getCaption();
 
-			ribbonPanel.setContent(tabs.get(tabCaption));
+			ribbonPanel.setContent(tabs.get(selectedCaption));
 
 			// show ribbon but don't change close button icon
 			showTabs(true);
@@ -197,6 +197,7 @@ public class OfficeMenu extends CssLayout {
 				tab.removeStyleName(STYLE_SELECTED);
 			}
 			event.getButton().addStyleName(STYLE_SELECTED);
+
 		}
 	};
 
@@ -212,8 +213,20 @@ public class OfficeMenu extends CssLayout {
 
 			if (open) {
 				close();
+
+				// remove selected style name
+				for (Button tab : tabCaptions.values()) {
+					tab.removeStyleName(STYLE_SELECTED);
+				}
+
 			} else {
 				open();
+
+				// re-style previously open tab
+				if (selectedCaption != null) {
+					tabCaptions.get(selectedCaption).addStyleName(
+							STYLE_SELECTED);
+				}
 			}
 		}
 	};

@@ -62,7 +62,14 @@ public class TestUI extends UI {
 		MenuItem item = section.addItem("Paste", new ThemeResource(
 				"images/add.png"));
 
-		item.addSubItem("lool", new ThemeResource("images/add.png"),
+		item.addSubItem("subItem1", null, new MenuCommand() {
+
+			@Override
+			public void menuItemClicked(SubMenuItem item) {
+				Notification.show("HELLO!");
+			}
+		});
+		item.addSubItem("subItem2", new ThemeResource("images/add.png"),
 				new MenuCommand() {
 
 					@Override
