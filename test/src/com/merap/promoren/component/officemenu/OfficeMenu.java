@@ -140,6 +140,10 @@ public class OfficeMenu extends CssLayout {
 				if (command != null) {
 					command.menuItemClicked(null);
 				}
+				// minimize menu
+				if (!open) {
+					close();
+				}
 			}
 		});
 
