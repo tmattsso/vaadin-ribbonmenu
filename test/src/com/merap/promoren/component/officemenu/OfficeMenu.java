@@ -73,6 +73,11 @@ public class OfficeMenu extends CssLayout {
 		showTabs(true);
 		open = true;
 		closeButton.setIcon(ARROW_DOWN);
+
+		// re-style previously open tab
+		if (selectedCaption != null) {
+			tabCaptions.get(selectedCaption).addStyleName(STYLE_SELECTED);
+		}
 	}
 
 	/**
@@ -82,6 +87,11 @@ public class OfficeMenu extends CssLayout {
 		showTabs(false);
 		open = false;
 		closeButton.setIcon(ARROW_UP);
+
+		// remove selected style name
+		for (Button tab : tabCaptions.values()) {
+			tab.removeStyleName(STYLE_SELECTED);
+		}
 	}
 
 	/**
@@ -156,7 +166,13 @@ public class OfficeMenu extends CssLayout {
 
 		caption.addClickListener(tabChangeListener);
 
+		if (tabs.size() == 1) {
+			caption.click();
+			close();
+		}
+
 		if (select) {
+			// select and open
 			caption.click();
 		}
 
@@ -186,18 +202,17 @@ public class OfficeMenu extends CssLayout {
 
 		@Override
 		public void buttonClick(ClickEvent event) {
-			selectedCaption = event.getButton().getCaption();
-
-			ribbonPanel.setContent(tabs.get(selectedCaption));
 
 			// show ribbon but don't change close button icon
 			showTabs(true);
+			selectedCaption = event.getButton().getCaption();
+
+			ribbonPanel.setContent(tabs.get(selectedCaption));
 
 			for (Button tab : tabCaptions.values()) {
 				tab.removeStyleName(STYLE_SELECTED);
 			}
 			event.getButton().addStyleName(STYLE_SELECTED);
-
 		}
 	};
 
@@ -213,20 +228,8 @@ public class OfficeMenu extends CssLayout {
 
 			if (open) {
 				close();
-
-				// remove selected style name
-				for (Button tab : tabCaptions.values()) {
-					tab.removeStyleName(STYLE_SELECTED);
-				}
-
 			} else {
 				open();
-
-				// re-style previously open tab
-				if (selectedCaption != null) {
-					tabCaptions.get(selectedCaption).addStyleName(
-							STYLE_SELECTED);
-				}
 			}
 		}
 	};
