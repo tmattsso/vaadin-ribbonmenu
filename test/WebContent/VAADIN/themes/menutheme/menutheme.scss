@@ -2,6 +2,7 @@
 
 $officemenu-font-size: 11px;
 $officemenu-icon-size: 32px;
+$officemenu-icon-size-small: 16px;
 $officemenu-button-width: 60px;
 $officemenu-button-height: 70px;
 
@@ -68,8 +69,8 @@ $officemenu-button-height: 70px;
 		}
 		
 		.v-button.tabcaption {
-			margin: 0 5px;
-			padding: 3px 20px;
+			margin: 0 2px;
+			padding: 2px 15px;
 			color: #444;
 			background: transparent;
 			border: 1px solid transparent;
@@ -141,13 +142,45 @@ $officemenu-button-height: 70px;
 				}
 			}
 		}
+		
+		.menusection.grid .menuitem {
+			@extend .base-menuitem;
+
+			> .v-button {
+				
+				height: auto;
+				
+				img.v-icon {
+					width: $officemenu-icon-size-small;
+					display: inline;
+					margin: 2px;
+					
+					position: absolute;
+					left: 2px;
+				}
+			}
+			
+			.v-button-caption {
+				
+				float: right;
+				line-height: 20px;
+			}
+			
+			.v-button-wrap {
+				background-image: none;
+			}
+		}
 
 		.v-slot-menusection {
-			border-right: 1px solid #AAA;
+			border-right: 1px solid #CCC;
+			border-left: 1px solid rgba(255,255,255,0.8);
 		
 			 > .v-has-caption {
 				position: relative;
 			}
+		}
+		.v-slot-menusection.v-slot-first {
+			border-left: none;
 		}
 
 		.menusection {
@@ -155,6 +188,7 @@ $officemenu-button-height: 70px;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			margin: 0 5px;
+			height: 90px;
 		}
 		
 		.v-button-link .v-button-wrap,

@@ -1,5 +1,6 @@
 package com.example.test;
 
+import com.merap.promoren.component.officemenu.GridMenuSection;
 import com.merap.promoren.component.officemenu.MenuCommand;
 import com.merap.promoren.component.officemenu.MenuItem;
 import com.merap.promoren.component.officemenu.MenuSection;
@@ -52,6 +53,15 @@ public class TestUI extends UI {
 		section.addItem("Save", new ThemeResource("images/add.png"));
 		section.addItem("Save As", new ThemeResource("images/add.png"));
 		section.addItem("Save Copy As", new ThemeResource("images/add.png"));
+
+		GridMenuSection grid = tab.addGridSection("Wizard", 1, 2);
+		grid.addItem("View", new ThemeResource("images/add.png"), 0, 0);
+		grid.addItem("Edit", new ThemeResource("images/add.png"), 0, 1);
+
+		grid = tab.addGridSection("Test", 2, 2);
+		grid.addItem("View", new ThemeResource("images/add.png"), 0, 0);
+		grid.addItem("Edit", new ThemeResource("images/add.png"), 0, 1);
+		grid.addItem("Edit", new ThemeResource("images/add.png"), 1, 0, 1, 1);
 
 		tab = menu.addTab("Edit");
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.vaadin.server.Resource;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.CustomComponent;
 
 /**
  * A menu section is a collection of {@link MenuItem}s. All items are part of a
@@ -16,19 +16,22 @@ import com.vaadin.ui.HorizontalLayout;
  * 
  * @author Thomas
  */
-public class MenuSection extends CssLayout {
+public class MenuSection extends CustomComponent {
 
 	private static final long serialVersionUID = 5917473030371445997L;
 
 	private final List<MenuItem> items = new ArrayList<MenuItem>();
 
+	private final CssLayout content = new CssLayout();
+
 	public MenuSection(String descString) {
+
+		setCompositionRoot(content);
 
 		setCaption(descString);
 
 		// component expands with additional buttons
-		setWidth(null);
-//		setHeight(OfficeMenu.HEIGHT_SECTIONS);
+		content.setWidth(null);
 		addStyleName("menusection");
 	}
 
@@ -40,6 +43,6 @@ public class MenuSection extends CssLayout {
 
 	public void addItem(MenuItem item) {
 		items.add(item);
-		addComponent(item);
+		content.addComponent(item);
 	}
 }
