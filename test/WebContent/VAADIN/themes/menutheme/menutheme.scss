@@ -205,14 +205,21 @@ $officemenu-button-height: 70px;
 			font-size: $officemenu-font-size;
 		}
 		
-		.menuitem.hassubitems .v-button-caption span {
-			display: block;
+		.menuitem.hassubitems .v-button-caption .downarrow {
+			
 			height: 16px;
 			width: 16px;
 			
-			margin: auto;
+			position: absolute;
+			right: 5px;
+			bottom: 21px;
 			
 			background-image: url("images/bullet_arrow_down.png");
+		}
+		
+		.menuitem.hassubitems .v-button:active .downarrow,
+		.menuitem.hassubitems .v-button.down .downarrow {
+			bottom: 20px;
 		}
 	}	
 }

@@ -21,7 +21,7 @@ import com.vaadin.ui.MenuBar.Command;
  */
 public class MenuItem extends SubMenuItem {
 
-	private static final String SPAN = "<span/>";
+	private static final String SPAN = "<span class=\"downarrow\"/>";
 
 	private static final String STYLE_SUBITEMS = "hassubitems";
 
@@ -78,13 +78,16 @@ public class MenuItem extends SubMenuItem {
 	public SubMenuItem addSubItem(String caption, Resource icon,
 			MenuCommand command) {
 		SubMenuItem item = new SubMenuItem(caption, icon, command, this);
+
+		if (subItems.isEmpty()) {
+			addStyleName(STYLE_SUBITEMS);
+
+			String oldCaption = realComponent.getCaption();
+			oldCaption += SPAN;
+			realComponent.setCaption(oldCaption);
+
+		}
 		subItems.add(item);
-
-		addStyleName(STYLE_SUBITEMS);
-
-		String oldCaption = realComponent.getCaption();
-		oldCaption += SPAN;
-		realComponent.setCaption(oldCaption);
 
 		return item;
 	}
