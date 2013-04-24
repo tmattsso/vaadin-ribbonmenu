@@ -158,31 +158,34 @@ $officemenu-button-height: 70px;
 					margin-top: 4px;
 					
 					position: absolute;
-					left: 8px;
+					left: 7px;
 				}
 			}
 			
 			.v-button-caption {
 				
-				float: right;
 				line-height: 25px;
 				white-space:nowrap;
 			}
 			
 			.v-button-wrap {
 				background-image: none;
+				text-align: left !important;
+				padding-left: 25px;
+				
+				
 			}
-		}
-		
-		.menusection.grid .menuitem.onerow.hassubitems .v-button-caption {
 			
+		}
+			
+		.menusection.grid .menuitem.onerow.hassubitems .v-button-wrap {
 			background-image: url("images/bullet_arrow_down.png");
 			padding-right: 11px;
 			background-repeat: no-repeat;
-			background-position-x: 115%;
-			background-position-y: 3px;
-		}
-
+			background-position-x: 85px;
+			background-position-y: 7px;
+			}
+		
 		.v-slot-menusection {
 			border-right: 1px solid #CCC;
 			border-left: 1px solid rgba(255,255,255,0.8);
