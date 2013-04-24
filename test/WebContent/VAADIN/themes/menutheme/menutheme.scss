@@ -4,6 +4,7 @@ $officemenu-font-size: 11px;
 $officemenu-icon-size: 32px;
 $officemenu-icon-size-small: 16px;
 $officemenu-button-width: 60px;
+$officemenu-button-onerow-width: 100px;
 $officemenu-button-height: 70px;
 
 .base-menuitem {
@@ -147,23 +148,25 @@ $officemenu-button-height: 70px;
 
 			> .v-button {
 				
+				width: $officemenu-button-onerow-width;
 				height: 33px;
 				margin-top: 2px;
 				
 				img.v-icon {
 					width: $officemenu-icon-size-small;
 					display: inline;
-					margin: 2px;
+					margin-top: 4px;
 					
 					position: absolute;
-					left: 2px;
+					left: 8px;
 				}
 			}
 			
 			.v-button-caption {
 				
 				float: right;
-				line-height: 20px;
+				line-height: 25px;
+				white-space:nowrap;
 			}
 			
 			.v-button-wrap {
@@ -176,8 +179,8 @@ $officemenu-button-height: 70px;
 			background-image: url("images/bullet_arrow_down.png");
 			padding-right: 11px;
 			background-repeat: no-repeat;
-			background-position-x: 17px;
-			background-position-y: 2px;
+			background-position-x: 110%;
+			background-position-y: 3px;
 		}
 
 		.v-slot-menusection {
