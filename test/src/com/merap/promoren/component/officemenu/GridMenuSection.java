@@ -44,6 +44,7 @@ public class GridMenuSection extends CustomComponent {
 	public void addItem(MenuItem item, int col, int row) {
 		items.add(item);
 		content.addComponent(item, col, row);
+		item.addStyleName("onerow");
 	}
 
 	public MenuItem addItem(String caption, Resource icon, int colStart,
@@ -57,5 +58,12 @@ public class GridMenuSection extends CustomComponent {
 			int rowEnd) {
 		items.add(item);
 		content.addComponent(item, colStart, rowStart, colEnd, rowEnd);
+
+		if (rowStart != rowEnd) {
+			item.addStyleName("multirow");
+		} else {
+			item.addStyleName("onerow");
+
+		}
 	}
 }

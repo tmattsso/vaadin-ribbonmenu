@@ -60,7 +60,18 @@ public class TestUI extends UI {
 
 		grid = tab.addGridSection("Test", 2, 2);
 		grid.addItem("View", new ThemeResource("images/add.png"), 0, 0);
-		grid.addItem("Edit", new ThemeResource("images/add.png"), 0, 1);
+		MenuItem item = grid.addItem("Edit",
+				new ThemeResource("images/add.png"), 0, 1);
+
+		item.addSubItem("subItem2", new ThemeResource("images/add.png"),
+				new MenuCommand() {
+
+					@Override
+					public void menuItemClicked(SubMenuItem item) {
+						Notification.show("HELLO!");
+					}
+				});
+
 		grid.addItem("Edit", new ThemeResource("images/add.png"), 1, 0, 1, 1);
 
 		tab = menu.addTab("Edit");
@@ -69,8 +80,7 @@ public class TestUI extends UI {
 		section.addItem("Cut", new ThemeResource("images/add.png"));
 		section.addItem("Copy", new ThemeResource("images/add.png"));
 
-		MenuItem item = section.addItem("Paste", new ThemeResource(
-				"images/add.png"));
+		item = section.addItem("Paste", new ThemeResource("images/add.png"));
 
 		item.addSubItem("subItem1", null, new MenuCommand() {
 

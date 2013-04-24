@@ -44,5 +44,6 @@ public class MenuSection extends CustomComponent {
 	public void addItem(MenuItem item) {
 		items.add(item);
 		content.addComponent(item);
+		item.addStyleName("multirow");
 	}
 }

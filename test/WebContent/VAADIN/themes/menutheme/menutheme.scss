@@ -143,12 +143,12 @@ $officemenu-button-height: 70px;
 			}
 		}
 		
-		.menusection.grid .menuitem {
-			@extend .base-menuitem;
+		.menusection.grid .menuitem.onerow {
 
 			> .v-button {
 				
-				height: auto;
+				height: 33px;
+				margin-top: 2px;
 				
 				img.v-icon {
 					width: $officemenu-icon-size-small;
@@ -169,6 +169,15 @@ $officemenu-button-height: 70px;
 			.v-button-wrap {
 				background-image: none;
 			}
+		}
+		
+		.menusection.grid .menuitem.onerow.hassubitems .v-button-caption {
+			
+			background-image: url("images/bullet_arrow_down.png");
+			padding-right: 11px;
+			background-repeat: no-repeat;
+			background-position-x: 17px;
+			background-position-y: 2px;
 		}
 
 		.v-slot-menusection {
@@ -205,7 +214,7 @@ $officemenu-button-height: 70px;
 			font-size: $officemenu-font-size;
 		}
 		
-		.menuitem.hassubitems .v-button-caption .downarrow {
+		.menuitem.hassubitems.multirow .v-button-caption .downarrow {
 			
 			height: 16px;
 			width: 16px;
@@ -217,8 +226,8 @@ $officemenu-button-height: 70px;
 			background-image: url("images/bullet_arrow_down.png");
 		}
 		
-		.menuitem.hassubitems .v-button:active .downarrow,
-		.menuitem.hassubitems .v-button.down .downarrow {
+		.menuitem.hassubitems.multirow .v-button:active .downarrow,
+		.menuitem.hassubitems.multirow .v-button.down .downarrow {
 			bottom: 20px;
 		}
 	}	
