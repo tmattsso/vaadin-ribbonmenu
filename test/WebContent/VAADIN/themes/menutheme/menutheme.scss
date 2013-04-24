@@ -179,7 +179,7 @@ $officemenu-button-height: 70px;
 			background-image: url("images/bullet_arrow_down.png");
 			padding-right: 11px;
 			background-repeat: no-repeat;
-			background-position-x: 110%;
+			background-position-x: 115%;
 			background-position-y: 3px;
 		}
 
@@ -229,9 +229,14 @@ $officemenu-button-height: 70px;
 			background-image: url("images/bullet_arrow_down.png");
 		}
 		
-		.menuitem.hassubitems.multirow .v-button:active .downarrow,
-		.menuitem.hassubitems.multirow .v-button.down .downarrow {
-			bottom: 20px;
+		.grid .menuitem.hassubitems.multirow .v-button-caption .downarrow {
+			right: 0px;
+			bottom: 1px;
+		}
+		
+		.grid .menuitem.hassubitems.multirow .v-button:active .downarrow,
+		.grid .menuitem.hassubitems.multirow .v-button.down .downarrow {
+			bottom: 0px;
 		}
 	}	
 }
