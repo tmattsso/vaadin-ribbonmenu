@@ -10,6 +10,8 @@ import com.merap.promoren.component.officemenu.SubMenuItem;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -116,6 +118,13 @@ public class TestUI extends UI {
 				});
 
 		layout.addComponent(menu);
+
+		Label fileMenu = new Label(
+				"<div class=\"filemenu\"> HELLO <span class=\"arrow-bg\"></span><span class=\"arrow-right\"/></span></div>");
+		fileMenu.setWidth("300px");
+		fileMenu.setHeight("50px");
+		fileMenu.setContentMode(ContentMode.HTML);
+		layout.addComponent(fileMenu);
 	}
 
 }

@@ -104,21 +104,43 @@ $officemenu-button-height: 70px;
 			}
 			
 			&.empty {
+			
 				background: #2860b3;
 				background: -webkit-gradient(linear, 0 0, 0 bottom, from(#4488e5), to(#2860b3));
 				background: -moz-linear-gradient(#4488e5, #2860b3);
-				border: 1px solid #1f48a1;
-				border-bottom: 1px solid #4488e5;
-				cursor: default;
-				color: #fff;
-				text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+				
+					background: #35a199; /* Old browsers */
+	background: -moz-linear-gradient(top, #35a199 0%, #44d3bf 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#35a199), color-stop(100%,#44d3bf)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #35a199 0%,#44d3bf 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #35a199 0%,#44d3bf 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #35a199 0%,#44d3bf 100%); /* IE10+ */
+	/* background: linear-gradient(to bottom, #35a199 0%,#44d3bf 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35a199', endColorstr='#44d3bf',GradientType=0 ); /* IE6-9 */
+	
+	border: 1px solid #319797;
+	border-bottom: 1px solid #42DCC5;
+	cursor: default;
+	color: #fff;
+	text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+				
 				
 				&:hover {
 					background: #3870c3;
 					background: -webkit-gradient(linear, 0 0, 0 bottom, from(#5498f5), to(#3870c3));
 					background: -moz-linear-gradient(#5498f5, #3870c3);
-					border: 1px solid #1f48a1;
-					border-bottom-color: transparent;
+					
+					background: #44b0a8; /* Old browsers */
+					background: -moz-linear-gradient(top, #44b0a8 0%, #53e2ce 100%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#44b0a8), color-stop(100%,#53e2ce)); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(top, #44b0a8 0%,#53e2ce 100%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(top, #44b0a8 0%,#53e2ce 100%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(top, #44b0a8 0%,#53e2ce 100%); /* IE10+ */
+					/* background: linear-gradient(to bottom, #44b0a8 0%,#53e2ce 100%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#44b0a8', endColorstr='#53e2ce',GradientType=0 ); /* IE6-9 */
+					
+					cursor: pointer;
+
 				}
 			}
 			
@@ -265,5 +287,52 @@ $officemenu-button-height: 70px;
 				margin-left: 16px;
 			}
 		}
+	}
+}
+
+.filemenu {
+ 
+	background: #35a199; /* Old browsers */
+	background: -moz-linear-gradient(top, #35a199 0%, #44d3bf 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#35a199), color-stop(100%,#44d3bf)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #35a199 0%,#44d3bf 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #35a199 0%,#44d3bf 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #35a199 0%,#44d3bf 100%); /* IE10+ */
+	/* background: linear-gradient(to bottom, #35a199 0%,#44d3bf 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35a199', endColorstr='#44d3bf',GradientType=0 ); /* IE6-9 */
+	
+	border: 1px solid #319797;
+	border-bottom: 1px solid #42DCC5;
+	cursor: default;
+	color: #fff;
+	text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+	
+	height: 50px;
+	position: relative;
+	
+	.arrow-right {
+		width: 0; 
+		height: 0; 
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+	
+		border-right: 10px solid white;
+		
+		position: absolute;
+		right: -1px;
+		top: 13px;
+	}
+	
+	.arrow-bg {
+		width: 0; 
+		height: 0; 
+		border-top: 12px solid transparent;
+		border-bottom: 12px solid transparent;
+	
+		border-right: 12px solid #CCC;
+		
+		position: absolute;
+		right: -1px;
+		top: 11px;
 	}
 }
