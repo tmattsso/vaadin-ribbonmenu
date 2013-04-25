@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.server.Resource;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.CustomComponent;
 
@@ -23,8 +24,10 @@ public class MenuSection extends CustomComponent {
 	private final List<MenuItem> items = new ArrayList<MenuItem>();
 
 	private final CssLayout content = new CssLayout();
+	private final ComponentContainer dataTransferDump;
 
-	public MenuSection(String descString) {
+	MenuSection(String descString, ComponentContainer dataTransferDump) {
+		this.dataTransferDump = dataTransferDump;
 
 		setCompositionRoot(content);
 
@@ -36,7 +39,7 @@ public class MenuSection extends CustomComponent {
 	}
 
 	public MenuItem addItem(String caption, Resource icon) {
-		MenuItem item = new MenuItem(caption, icon, null);
+		MenuItem item = new MenuItem(caption, icon, null, dataTransferDump);
 		addItem(item);
 		return item;
 	}

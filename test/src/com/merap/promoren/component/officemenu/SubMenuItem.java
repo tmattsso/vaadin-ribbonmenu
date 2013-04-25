@@ -22,7 +22,7 @@ public class SubMenuItem extends CustomComponent {
 
 	protected final Button realComponent = new Button();
 
-	public SubMenuItem(String caption, Resource icon, MenuCommand command,
+	SubMenuItem(String caption, Resource icon, MenuCommand command,
 			final MenuItem parent) {
 
 		super();

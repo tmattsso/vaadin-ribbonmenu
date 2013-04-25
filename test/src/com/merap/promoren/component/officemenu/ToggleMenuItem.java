@@ -3,8 +3,8 @@ package com.merap.promoren.component.officemenu;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.MenuBar.Command;
-import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * Single Menu Item. Always resides inside a {@link MenuSection}.
@@ -22,8 +22,9 @@ public class ToggleMenuItem extends MenuItem {
 
 	private boolean isDown = false;
 
-	public ToggleMenuItem(String caption, Resource icon, MenuCommand command) {
-		super(caption, icon, command);
+	ToggleMenuItem(String caption, Resource icon, MenuCommand command,
+			ComponentContainer dataTransferDump) {
+		super(caption, icon, command, dataTransferDump);
 
 		realComponent.addStyleName(STYLE_UNPRESSED);
 		realComponent.addClickListener(new ClickListener() {

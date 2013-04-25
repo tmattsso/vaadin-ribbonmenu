@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.server.Resource;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
 
@@ -23,8 +24,11 @@ public class GridMenuSection extends CustomComponent {
 	private final List<MenuItem> items = new ArrayList<MenuItem>();
 
 	private final GridLayout content;
+	private final ComponentContainer dataTransferDump;
 
-	public GridMenuSection(String descString, int columns, int rows) {
+	public GridMenuSection(String descString, int columns, int rows,
+			ComponentContainer dataTransferDump) {
+		this.dataTransferDump = dataTransferDump;
 		content = new GridLayout(columns, rows);
 		setCompositionRoot(content);
 
@@ -36,20 +40,18 @@ public class GridMenuSection extends CustomComponent {
 	}
 
 	public MenuItem addItem(String caption, Resource icon, int col, int row) {
-		MenuItem item = new MenuItem(caption, icon, null);
+		MenuItem item = new MenuItem(caption, icon, null, dataTransferDump);
 		addItem(item, col, row);
 		return item;
 	}
 
 	public void addItem(MenuItem item, int col, int row) {
-		items.add(item);
-		content.addComponent(item, col, row);
-		item.addStyleName("onerow");
+		addItem(item, col, row, col, row);
 	}
 
 	public MenuItem addItem(String caption, Resource icon, int colStart,
 			int rowStart, int colEnd, int rowEnd) {
-		MenuItem item = new MenuItem(caption, icon, null);
+		MenuItem item = new MenuItem(caption, icon, null, dataTransferDump);
 		addItem(item, colStart, rowStart, colEnd, rowEnd);
 		return item;
 	}

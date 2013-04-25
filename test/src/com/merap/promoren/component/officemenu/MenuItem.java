@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.wolfie.popupextension.PopupExtension;
+import com.github.wolfie.popupextension.PopupExtension.PopupExtensionManualBundle;
 import com.github.wolfie.popupextension.PopupExtension.PopupVisibilityListener;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.MenuBar.Command;
 
@@ -32,23 +34,14 @@ public class MenuItem extends SubMenuItem {
 	private PopupExtension popup;
 	private CssLayout popupContent;
 
-	public MenuItem(String caption, Resource icon, MenuCommand command) {
+	MenuItem(String caption, Resource icon, MenuCommand command,
+			final ComponentContainer dataTransferDump) {
 		super(caption, icon, command, null);
 
 		addStyleName("menuitem");
 		removeStyleName("submenuitem");
 
 		realComponent.setHtmlContentAllowed(true);
-
-		// PopupExtensionManualBundle p = PopupExtension
-		// .extendWithManualBundle(realComponent);
-		// popup = p.getPopupExtension();
-
-		// wrap in a layout for the transfer widget;
-		// CssLayout cl = new CssLayout();
-		// setCompositionRoot(cl);
-		// cl.addComponent(realComponent);
-		// cl.addComponent(p.getDataTransferComponent());
 
 		realComponent.addClickListener(new ClickListener() {
 
@@ -59,9 +52,15 @@ public class MenuItem extends SubMenuItem {
 
 				if (!subItems.isEmpty()) {
 					// open popup
-					popup = PopupExtension.extend(realComponent);
-					popup.setAnchor(Alignment.BOTTOM_LEFT);
-					popup.closeOnOutsideMouseClick(true);
+					if (popup != null) {
+						popup.remove();
+					}
+
+					PopupExtensionManualBundle p = PopupExtension
+							.extendWithManualBundle(realComponent);
+					popup = p.getPopupExtension();
+					dataTransferDump.addComponent(p.getDataTransferComponent());
+
 					popup.addPopupVisibilityListener(new PopupVisibilityListener() {
 						@Override
 						public void visibilityChanged(boolean isOpened) {
@@ -72,6 +71,8 @@ public class MenuItem extends SubMenuItem {
 							}
 						}
 					});
+					popup.setAnchor(Alignment.BOTTOM_LEFT);
+					popup.closeOnOutsideMouseClick(true);
 					popupContent = new CssLayout();
 					popup.setContent(popupContent);
 
