@@ -21,7 +21,7 @@ import com.vaadin.ui.MenuBar.Command;
  */
 public class MenuItem extends SubMenuItem {
 
-	private static final String SPAN = "<span class=\"downarrow\"/>";
+	private static final String SPAN = "<span class=\"downarrow\">";
 
 	private static final String STYLE_SUBITEMS = "hassubitems";
 
@@ -30,6 +30,7 @@ public class MenuItem extends SubMenuItem {
 	private final List<SubMenuItem> subItems = new ArrayList<SubMenuItem>();
 
 	private PopupExtension popup;
+	private CssLayout popupContent;
 
 	public MenuItem(String caption, Resource icon, MenuCommand command) {
 		super(caption, icon, command, null);
@@ -39,37 +40,47 @@ public class MenuItem extends SubMenuItem {
 
 		realComponent.setHtmlContentAllowed(true);
 
+		// PopupExtensionManualBundle p = PopupExtension
+		// .extendWithManualBundle(realComponent);
+		// popup = p.getPopupExtension();
+
+		// wrap in a layout for the transfer widget;
+		// CssLayout cl = new CssLayout();
+		// setCompositionRoot(cl);
+		// cl.addComponent(realComponent);
+		// cl.addComponent(p.getDataTransferComponent());
+
 		realComponent.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = -615975673819020510L;
 
 			@Override
 			public void buttonClick(final ClickEvent event) {
+
 				if (!subItems.isEmpty()) {
 					// open popup
-
 					popup = PopupExtension.extend(realComponent);
 					popup.setAnchor(Alignment.BOTTOM_LEFT);
 					popup.closeOnOutsideMouseClick(true);
-					popup.open();
-
-					CssLayout popupContent = new CssLayout();
+					popup.addPopupVisibilityListener(new PopupVisibilityListener() {
+						@Override
+						public void visibilityChanged(boolean isOpened) {
+							if (isOpened) {
+								realComponent.addStyleName("down");
+							} else {
+								realComponent.removeStyleName("down");
+							}
+						}
+					});
+					popupContent = new CssLayout();
 					popup.setContent(popupContent);
 
+					popupContent.removeAllComponents();
 					for (SubMenuItem item : subItems) {
 						popupContent.addComponent(item);
 					}
 
-					// fix styles as long as popup is open
-					event.getButton().addStyleName("down");
-					popup.addPopupVisibilityListener(new PopupVisibilityListener() {
-						@Override
-						public void visibilityChanged(boolean isOpened) {
-							if (!isOpened) {
-								event.getButton().removeStyleName("down");
-							}
-						}
-					});
+					popup.open();
 				}
 			}
 		});

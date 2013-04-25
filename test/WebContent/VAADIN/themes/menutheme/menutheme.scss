@@ -2,7 +2,7 @@
 
 $officemenu-font-size: 11px;
 $officemenu-icon-size: 32px;
-$officemenu-icon-size-small: 16px;
+$officemenu-icon-size-small: auto;
 $officemenu-button-width: 60px;
 $officemenu-button-onerow-width: 100px;
 $officemenu-button-height: 70px;
@@ -177,7 +177,7 @@ $officemenu-button-height: 70px;
 				img.v-icon {
 					width: $officemenu-icon-size-small;
 					display: inline;
-					margin-top: 4px;
+					margin-top: 0px;
 					
 					position: absolute;
 					left: 7px;
@@ -193,7 +193,7 @@ $officemenu-button-height: 70px;
 			.v-button-wrap {
 				background-image: none;
 				text-align: left !important;
-				padding-left: 25px;
+				padding-left: 33px;
 				
 				
 			}
@@ -305,7 +305,9 @@ $officemenu-button-height: 70px;
 	border-bottom: 1px solid #42DCC5;
 	cursor: default;
 	color: #fff;
-	text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+	/* text-shadow: rgb(0, 0, 0) 0px 1px 0px; */
+	line-height: 45px;
+	padding-left: 20px;
 	
 	height: 50px;
 	position: relative;
@@ -326,13 +328,13 @@ $officemenu-button-height: 70px;
 	.arrow-bg {
 		width: 0; 
 		height: 0; 
-		border-top: 12px solid transparent;
-		border-bottom: 12px solid transparent;
+		border-top: 11px solid transparent;
+		border-bottom: 11px solid transparent;
 	
-		border-right: 12px solid #CCC;
+		border-right: 11px solid #319797;
 		
 		position: absolute;
 		right: -1px;
-		top: 11px;
+		top: 12px;
 	}
 }
