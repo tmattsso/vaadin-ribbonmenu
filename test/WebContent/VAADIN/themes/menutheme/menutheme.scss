@@ -209,8 +209,10 @@ $officemenu-button-height: 70px;
 			}
 		
 		.v-slot-menusection {
-			border-right: 1px solid #CCC;
-			border-left: 1px solid rgba(255,255,255,0.8);
+			
+			background-image: url("images/separator-gradient.png");
+			background-repeat: no-repeat;
+			background-position: right;
 		
 			 > .v-has-caption {
 				position: relative;
