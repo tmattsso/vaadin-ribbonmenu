@@ -5,7 +5,7 @@ $officemenu-icon-size: 32px;
 $officemenu-icon-size-small: auto;
 $officemenu-button-width: 60px;
 $officemenu-button-onerow-width: 100px;
-$officemenu-button-height: 70px;
+$officemenu-button-height: 64px;
 
 .base-menuitem {
 	> .v-button {
@@ -27,7 +27,7 @@ $officemenu-button-height: 70px;
 		}
 		
 		> .v-button-wrap {
-			padding: 4px 6px;
+			padding: 2px 6px;
 			
 			> .v-button-caption {
 				white-space: normal;
@@ -54,7 +54,10 @@ $officemenu-button-height: 70px;
 			
 			> .v-panel-content {
 				@include ribbon-gradient;
-				padding: 3px;
+				padding-top: 3px;
+				padding-left: 1px;
+				padding-right: 1px;
+				padding-bottom: 1px;
 				overflow: hidden;
 				min-width: 500px;
 			}
@@ -158,6 +161,11 @@ $officemenu-button-height: 70px;
 				width: $officemenu-button-width;
 				height: $officemenu-button-height;
 				
+				.v-button-caption {
+					display: inline-block;
+					line-height: 14px;
+				}
+				
 				img.v-icon {
 					width: $officemenu-icon-size;
 					display: block;
@@ -171,8 +179,8 @@ $officemenu-button-height: 70px;
 			> .v-button {
 				
 				width: $officemenu-button-onerow-width;
-				height: 33px;
-				margin-top: 2px;
+				height: 31px;
+				margin-top: 0px;
 				
 				img.v-icon {
 					width: $officemenu-icon-size-small;
@@ -227,7 +235,7 @@ $officemenu-button-height: 70px;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			margin: 0 5px;
-			height: 90px;
+			height: 80px;
 		}
 		
 		.v-button-link .v-button-wrap,
@@ -240,7 +248,7 @@ $officemenu-button-height: 70px;
 			bottom: 0;
 			text-align: center;
 			width: 100%;
-			color: #5B626C;
+			color: rgba(91, 98, 108, 0.7);
 			font-size: $officemenu-font-size;
 		}
 		
@@ -251,9 +259,13 @@ $officemenu-button-height: 70px;
 			
 			position: absolute;
 			right: 5px;
-			bottom: 21px;
+			bottom: 16px;
 			
 			background-image: url("images/bullet_arrow_down.png");
+		}
+		.menuitem.hassubitems.multirow .v-button:active .downarrow,
+		.menuitem.hassubitems.multirow .v-button.down .downarrow {
+			bottom: 15px;
 		}
 		
 		.grid .menuitem.hassubitems.multirow .v-button-caption .downarrow {

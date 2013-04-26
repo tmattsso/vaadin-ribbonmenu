@@ -113,8 +113,8 @@ public class TestUI extends UI {
 				"images/1366804833_gear_yellow.png"), 0, 0);
 		grid.addItem("Global History", new ThemeResource(
 				"images/1366660878_kservices.png"), 0, 1);
-		item = grid.addItem("Forward to..",
-				new ThemeResource("images/add.png"), 1, 0, 1, 1);
+		item = grid.addItem("Forward to..", new ThemeResource(
+				"images/1366744114_cards_bind_address.png"), 1, 0, 1, 1);
 		item.addSubItem("User 1", new ThemeResource(
 				"images/1366744114_cards_bind_address.png"), dummyCommand);
 		grid.addItem("Auto Forward", new ThemeResource(
