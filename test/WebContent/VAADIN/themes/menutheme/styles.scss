@@ -2,8 +2,10 @@
 
 @IMPORT "../chameleon/chameleon.scss";
 @import "menutheme.scss";
+@import "tabsheet.scss";
 
 .menutheme {
 	@include chameleon;
 	@include menutheme;
+	@include invertedtabsheet;
 }

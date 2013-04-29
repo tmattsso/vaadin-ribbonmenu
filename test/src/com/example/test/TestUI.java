@@ -6,13 +6,11 @@ import com.merap.promoren.component.officemenu.MenuItem;
 import com.merap.promoren.component.officemenu.MenuSection;
 import com.merap.promoren.component.officemenu.MenuTab;
 import com.merap.promoren.component.officemenu.OfficeMenu;
-import com.merap.promoren.component.officemenu.SubMenuItem;
+import com.merap.promoren.component.tabsheet.InvertedTabSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -30,40 +28,18 @@ public class TestUI extends UI {
 		layout.setSizeFull();
 		setContent(layout);
 
-		OfficeMenu menu = new OfficeMenu();
+		InvertedTabSheet tabs = new InvertedTabSheet();
+		tabs.setHeight("300px");
+		tabs.setWidth("300px");
 
-		MenuCommand dummyCommand = new MenuCommand() {
+		tabs.addTab("loool1", new Label("looolo1")).setIcon(
+				new ThemeResource("images/add.png"));
+		tabs.addTab("loool2", new Label("looolo2"));
+		tabs.addTab("loool3", new Label("looolo3"));
 
-			@Override
-			public void menuItemClicked(SubMenuItem item) {
-				Notification.show("HELLO!");
-			}
-		};
+		layout.addComponent(tabs);
 
-		menu.addEmptySection("File", new ThemeResource("images/add.png"),
-				new MenuCommand() {
-
-					@Override
-					public void menuItemClicked(SubMenuItem item) {
-						Notification.show("File menu clicked!");
-					}
-				});
-
-		createTaskMenu(menu, dummyCommand);
-		createDocsMenu(menu, dummyCommand);
-		createUtilMenu(menu, dummyCommand);
-		createAdminMenu(menu, dummyCommand);
-
-		layout.addComponent(menu);
-
-		Label fileMenu = new Label(
-				"<div class=\"filemenu\"> New <span class=\"arrow-bg\"></span><span class=\"arrow-right\"/></span></div>");
-		fileMenu.setWidth("300px");
-		fileMenu.setHeight("50px");
-		fileMenu.setContentMode(ContentMode.HTML);
-		layout.addComponent(fileMenu);
-
-		layout.setHeight(null);
+		layout.setHeight("100%");
 		layout.setSpacing(true);
 	}
 

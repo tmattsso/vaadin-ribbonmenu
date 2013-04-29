@@ -1,0 +1,63 @@
+@CHARSET "ISO-8859-1";
+
+
+	$menu-gradient-top: #ff9706;
+	$menu-gradient-bottom: #e67e00;
+	$menu-gradient-top-hover: #FFBF2E;
+	
+@mixin invertedtabsheet {
+	
+	.invertedtabsheet {
+	
+	
+	
+		.tabcaptions {
+		
+			border-top: 1px solid #CCC;
+			background-color: #EEF1F4;
+			padding-left: auto;
+			
+			.tabcaption {
+				
+				background: none;
+				border: 1px solid transparent;
+				
+				margin: 2px;
+				float: right;
+				
+				height: auto;
+				width: auto;
+				
+				.v-button-wrap {
+					
+					padding: 2px;
+					width: 16px;
+					height: 16px;
+					border: none;
+					background:none;
+				
+					img {
+						margin: 0;
+						display: block;
+					}
+				}
+				
+				.v-button-caption {
+					display: none;
+				}
+			}
+			
+			.tabcaption:hover,
+			.tabcaption.selected {
+			
+				.v-button-wrap {
+					
+				}
+				
+				border: 1px solid #F1C43F;
+				background: #fdeeb3;
+			}
+		}
+	
+	}
+}
