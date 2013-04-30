@@ -10,8 +10,8 @@ import com.merap.promoren.component.tabsheet.InvertedTabSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -29,7 +29,7 @@ public class TestUI extends UI {
 		layout.setSizeFull();
 		setContent(layout);
 
-		Panel wrapper = new Panel("Wrapper panel");
+		HorizontalSplitPanel wrapper = new HorizontalSplitPanel();
 		wrapper.setHeight("300px");
 		wrapper.setWidth("300px");
 
@@ -48,7 +48,7 @@ public class TestUI extends UI {
 		tabs.addTab("Dashboard", new Label("Content 5")).setIcon(
 				new ThemeResource("images/1366993830_bar_chart.png"));
 
-		wrapper.setContent(tabs);
+		wrapper.addComponent(tabs);
 		layout.addComponent(wrapper);
 
 		layout.setHeight("100%");
