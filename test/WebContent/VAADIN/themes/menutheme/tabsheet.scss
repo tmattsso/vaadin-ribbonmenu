@@ -5,22 +5,43 @@
 	$menu-gradient-bottom: #e67e00;
 	$menu-gradient-top-hover: #FFBF2E;
 	
+@mixin button-effects {
+
+	border-top: 1px solid #CCC;
+	background-color: #EEF1F4;
+	padding-left: auto;
+	
+	.tabcaption,
+	.open {
+		background: none;
+		border: 1px solid transparent;
+		
+		.v-button-wrap {
+					
+			border: none;
+			background: none;
+		}
+	}
+	
+	.tabcaption:hover,
+	.tabcaption.selected {
+	
+		border: 1px solid #F1C43F;
+		background: #fdeeb3;
+	}
+
+}	
+
 @mixin invertedtabsheet {
 	
 	.invertedtabsheet {
 	
-	
-	
 		.tabcaptions {
 		
-			border-top: 1px solid #CCC;
-			background-color: #EEF1F4;
-			padding-left: auto;
+			@include button-effects;
 			
-			.tabcaption {
-				
-				background: none;
-				border: 1px solid transparent;
+			.tabcaption,
+			.open {
 				
 				margin: 2px;
 				float: right;
@@ -33,31 +54,42 @@
 					padding: 2px;
 					width: 16px;
 					height: 16px;
-					border: none;
-					background:none;
 				
 					img {
-						margin: 0;
 						display: block;
+						margin: 0;
 					}
 				}
-				
 				.v-button-caption {
-					display: none;
+						display: none;
 				}
 			}
 			
-			.tabcaption:hover,
-			.tabcaption.selected {
-			
-				.v-button-wrap {
-					
-				}
-				
-				border: 1px solid #F1C43F;
-				background: #fdeeb3;
-			}
 		}
 	
 	}
+	
+	.h-popupextension.tabsheet {
+		border-top:none;
+	}
+	
+	.tabsheetpopup {
+		
+		@include button-effects;
+	
+		.v-button {
+			display: block;
+				border-radius: 0;
+			
+			.v-button-wrap {
+				padding: 2px 5px;
+				padding-left: 10px;
+				float: left;
+				
+				.v-button-caption {
+					vertical-align: middle;
+				}
+			}
+		}
+	}	
 }

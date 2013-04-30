@@ -3,7 +3,11 @@ package com.merap.promoren.component.tabsheet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.wolfie.popupextension.PopupExtension;
+import com.github.wolfie.popupextension.PopupExtension.PopupExtensionManualBundle;
 import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -24,6 +28,8 @@ public class InvertedTabSheet extends CustomComponent {
 	private final VerticalLayout content = new VerticalLayout();
 	private final CssLayout buttons;
 	private final Panel tabcontent;
+
+	private PopupExtensionManualBundle bundle;
 
 	private boolean massUpdate = false;
 
@@ -67,6 +73,48 @@ public class InvertedTabSheet extends CustomComponent {
 		buttons.removeAllComponents();
 
 		// iterate backwards; float-right will fix order
+
+		final Button open = new Button();
+		open.addStyleName("open");
+		open.setIcon(new ThemeResource("images/arrow-down.png"));
+		open.addClickListener(new ClickListener() {
+
+			private static final long serialVersionUID = 4741866556715191692L;
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+
+				removePopupComponents();
+
+				bundle = PopupExtension.extendWithManualBundle(open);
+				buttons.addComponent(bundle.getDataTransferComponent());
+				PopupExtension ext = bundle.getPopupExtension();
+
+				ext.setPopupStyleName("tabsheet");
+				ext.setAnchor(Alignment.TOP_RIGHT);
+				// ext.setDirection(Alignment.BOTTOM_LEFT);
+				ext.closeOnOutsideMouseClick(true);
+
+				CssLayout menuContent = new CssLayout();
+				menuContent.setSizeUndefined();
+				menuContent.addStyleName("tabsheetpopup");
+
+				for (Tab t : tabs) {
+					Button b = new Button(t.getCaption());
+					b.addStyleName("tabcaption");
+					b.setDescription(t.getDescription());
+					b.setIcon(t.getIcon());
+					b.addClickListener(tabChangeListener);
+					b.setData(t);
+					menuContent.addComponent(b);
+				}
+
+				ext.setContent(menuContent);
+				ext.open();
+			}
+		});
+		buttons.addComponent(open);
+
 		for (int i = tabs.size() - 1; i > -1; i--) {
 			Tab tab = tabs.get(i);
 			Button b = new Button(tab.getCaption(), tabChangeListener);
@@ -85,12 +133,21 @@ public class InvertedTabSheet extends CustomComponent {
 		massUpdate = false;
 	}
 
+	private void removePopupComponents() {
+		if (bundle != null) {
+			bundle.getPopupExtension().remove();
+			buttons.removeComponent(bundle.getDataTransferComponent());
+			bundle = null;
+		}
+	}
+
 	private final ClickListener tabChangeListener = new ClickListener() {
 
 		private static final long serialVersionUID = 4617461083732078861L;
 
 		@Override
 		public void buttonClick(ClickEvent event) {
+			removePopupComponents();
 			selected = (Tab) event.getButton().getData();
 			refresh();
 		}

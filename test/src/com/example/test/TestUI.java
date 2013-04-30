@@ -11,6 +11,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -28,16 +29,27 @@ public class TestUI extends UI {
 		layout.setSizeFull();
 		setContent(layout);
 
+		Panel wrapper = new Panel("Wrapper panel");
+		wrapper.setHeight("300px");
+		wrapper.setWidth("300px");
+
 		InvertedTabSheet tabs = new InvertedTabSheet();
-		tabs.setHeight("300px");
-		tabs.setWidth("300px");
+		tabs.setSizeFull();
 
-		tabs.addTab("loool1", new Label("looolo1")).setIcon(
-				new ThemeResource("images/add.png"));
-		tabs.addTab("loool2", new Label("looolo2"));
-		tabs.addTab("loool3", new Label("looolo3"));
+		tabs.addTab("Back-Office - Application setup", new Label("Content 1"))
+				.setIcon(new ThemeResource("images/1366989665_databases.png"));
+		tabs.addTab("Workflow Tasks, Documents and Data",
+				new Label("Content 2")).setIcon(
+				new ThemeResource("images/1366989848_wheel.png"));
+		tabs.addTab("Books and Documents Database", new Label("Content 3"))
+				.setIcon(new ThemeResource("images/1366990765_books.png"));
+		tabs.addTab("Accounting", new Label("Content 4")).setIcon(
+				new ThemeResource("images/1366993680_calculator.png"));
+		tabs.addTab("Dashboard", new Label("Content 5")).setIcon(
+				new ThemeResource("images/1366993830_bar_chart.png"));
 
-		layout.addComponent(tabs);
+		wrapper.setContent(tabs);
+		layout.addComponent(wrapper);
 
 		layout.setHeight("100%");
 		layout.setSpacing(true);
