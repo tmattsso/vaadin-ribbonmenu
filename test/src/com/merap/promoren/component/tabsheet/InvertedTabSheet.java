@@ -77,6 +77,7 @@ public class InvertedTabSheet extends CustomComponent {
 		final Button open = new Button();
 		open.addStyleName("open");
 		open.setIcon(new ThemeResource("images/arrow-down.png"));
+
 		open.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = 4741866556715191692L;
@@ -84,19 +85,23 @@ public class InvertedTabSheet extends CustomComponent {
 			@Override
 			public void buttonClick(ClickEvent event) {
 
-				removePopupComponents();
+				if (bundle != null) {
+					bundle.getPopupExtension().remove();
+					buttons.removeComponent(bundle.getDataTransferComponent());
+				}
 
 				bundle = PopupExtension.extendWithManualBundle(open);
 				buttons.addComponent(bundle.getDataTransferComponent());
-				PopupExtension ext = bundle.getPopupExtension();
+				final PopupExtension ext = bundle.getPopupExtension();
 
 				ext.setPopupStyleName("tabsheet");
 				ext.setAnchor(Alignment.TOP_RIGHT);
-				// ext.setDirection(Alignment.BOTTOM_LEFT);
+				ext.setDirection(Alignment.TOP_RIGHT);
 				ext.closeOnOutsideMouseClick(true);
 
 				CssLayout menuContent = new CssLayout();
 				menuContent.setSizeUndefined();
+				menuContent.setHeight("121px");
 				menuContent.addStyleName("tabsheetpopup");
 
 				for (Tab t : tabs) {
@@ -133,21 +138,13 @@ public class InvertedTabSheet extends CustomComponent {
 		massUpdate = false;
 	}
 
-	private void removePopupComponents() {
-		if (bundle != null) {
-			bundle.getPopupExtension().remove();
-			buttons.removeComponent(bundle.getDataTransferComponent());
-			bundle = null;
-		}
-	}
-
 	private final ClickListener tabChangeListener = new ClickListener() {
 
 		private static final long serialVersionUID = 4617461083732078861L;
 
 		@Override
 		public void buttonClick(ClickEvent event) {
-			removePopupComponents();
+			// removePopupComponents();
 			selected = (Tab) event.getButton().getData();
 			refresh();
 		}

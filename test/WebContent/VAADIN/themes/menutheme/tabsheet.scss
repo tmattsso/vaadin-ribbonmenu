@@ -7,7 +7,6 @@
 	
 @mixin button-effects {
 
-	border-top: 1px solid #CCC;
 	background-color: #EEF1F4;
 	padding-left: auto;
 	
@@ -38,6 +37,8 @@
 	
 		.tabcaptions {
 		
+		
+			border-top: 1px solid #CCC;
 			@include button-effects;
 			
 			.tabcaption,
@@ -71,9 +72,23 @@
 	
 	.h-popupextension.tabsheet {
 		border-top:none;
+		
+		margin-left: 3px !important;
+		margin-top: -96px !important;
+		
+		border: 1px solid #CCC;
+		background: none;
+		background-color: #EEF1F4;
 	}
 	
 	.tabsheetpopup {
+
+		border: none;
+		background:none;
+		
+		margin-left: 25px;
+		border-left: 1px solid #CCC;
+		border-top:none;
 		
 		@include button-effects;
 	
@@ -83,8 +98,13 @@
 			
 			.v-button-wrap {
 				padding: 2px 5px;
-				padding-left: 10px;
 				float: left;
+				
+				img {
+					position: absolute;
+					left: 10px;
+					padding-top: 2px;
+				}
 				
 				.v-button-caption {
 					vertical-align: middle;
